@@ -1,13 +1,12 @@
 import React from 'react';
-import {inject, observer} from "mobx-react";
 import '~/style/index.scss';
 import 'semantic-ui-css/semantic.min.css'
-import {Button} from "semantic-ui-react";
+import ProjectPages from "~/app/pages";
 
 function App() {
   return (
-    <div className="index">
-      header
+    <div>
+      <ProjectPages/>
     </div>
   );
 }
