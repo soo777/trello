@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Input } from "semantic-ui-react";
+import Board from "~/app/ui/project/Board";
 
 class ProjectContainer extends React.Component {
 
@@ -8,17 +8,10 @@ class ProjectContainer extends React.Component {
     return(
       <>
         <div className='title'>
-          images
+          <img src='/images/light_64.png'/>
         </div>
 
-        <div className='board'>
-          Creating Board
-          <Input focus placeholder='Board...' />
-          <div className='text_right'>
-            <Button content='Create' color='green' />
-            <Button content='Cancel' />
-          </div>
-        </div>
+        <Board/>
       </>
     )
   }

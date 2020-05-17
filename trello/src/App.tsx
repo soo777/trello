@@ -2,12 +2,18 @@ import React from 'react';
 import '~/style/index.scss';
 import 'semantic-ui-css/semantic.min.css'
 import ProjectPages from "~/app/pages";
+import { Provider } from "mobx-react";
+import BoardStore from "~/app/service/BoardStore";
+
+const boardStore = new BoardStore();
 
 function App() {
   return (
-    <div>
-      <ProjectPages/>
-    </div>
+  <Provider
+    boardStore={boardStore}
+  >
+    <ProjectPages/>
+  </Provider>
   );
 }
 

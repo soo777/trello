@@ -11,6 +11,38 @@
 .board{
   width: 30%;
   padding: 30px;
+
+  .basic{
+    padding: 30px;
+    background: #78bc6d;
+    border-radius: 10px;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    &:hover{
+      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+      -webkit-transition: 200ms ease-in-out;
+      transition: 200ms ease-in-out;
+      -webkit-transform: scale(1.10);
+      -ms-transform: scale(1.10);
+      transform: scale(1.10);
+    }
+  }
+
+  .wrapper{
+    padding: 15px;
+    background: #78bc6d;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    .box{
+      padding: 10px;
+      .closeIcon{
+        float: right;
+        cursor: pointer;
+      }
+    }
+  }
 }
 
 .ui.focus.input{

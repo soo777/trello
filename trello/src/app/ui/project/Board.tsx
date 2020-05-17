@@ -1,0 +1,70 @@
+import React from 'react';
+import { Button, Icon, Input } from "semantic-ui-react";
+import BoardStore from "~/app/service/BoardStore";
+import { inject, observer } from "mobx-react";
+
+interface Props {
+  boardStore?:BoardStore;
+}
+
+@inject('boardStore')
+@observer
+class Board extends React.Component<Props> {
+
+  state = {
+    boardDisplay: 'block',
+    createBoardDisplay: 'none'
+  };
+
+  openCreateBoard = () =>{
+    this.setState({
+      boardDisplay: 'none',
+      createBoardDisplay: 'block'
+    });
+  };
+
+  closeCreateBoard = () => {
+    this.setState({
+      boardDisplay: 'block',
+      createBoardDisplay: 'none'
+    })
+  }
+
+  render(){
+
+    return(
+      <div className='board'>
+
+        <div
+          className='basic'
+          style={{display:this.state.boardDisplay}}
+          onClick={this.openCreateBoard}
+        >
+          Creating a new Board
+        </div>
+
+        <div
+          className='wrapper'
+          style={{display:this.state.createBoardDisplay}}
+        >
+          <div>
+            <div className='box'>
+              Creating Board
+              <span className='closeIcon' onClick={this.closeCreateBoard}>
+                <Icon name='close'  />
+              </span>
+            </div>
+            <Input className='box' focus placeholder='Board...'/>
+            <div className='text_right box'>
+              <Button content='Create' />
+              <Button content='Cancel' onClick={this.closeCreateBoard}/>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    )
+  }
+}
+
+export default  Board;
