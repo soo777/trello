@@ -1,4 +1,4 @@
-import { observable } from "mobx";
+import { action, observable } from "mobx";
 
 class BoardStore {
 
@@ -8,7 +8,14 @@ class BoardStore {
   @observable
   createBoardDisplay:string = 'none';
 
+  @observable
+  boardList:string[] = ['aaa'];
 
+  @action
+  createBoard(boardTitle:string) {
+    this.boardList = this.boardList.concat(boardTitle);
+    console.log(this.boardList);
+  }
 }
 
 export default  BoardStore;

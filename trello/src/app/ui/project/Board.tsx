@@ -13,7 +13,8 @@ class Board extends React.Component<Props> {
 
   state = {
     boardDisplay: 'block',
-    createBoardDisplay: 'none'
+    createBoardDisplay: 'none',
+    boardTitle: '',
   };
 
   openCreateBoard = () =>{
@@ -26,8 +27,24 @@ class Board extends React.Component<Props> {
   closeCreateBoard = () => {
     this.setState({
       boardDisplay: 'block',
-      createBoardDisplay: 'none'
+      createBoardDisplay: 'none',
+      boardTitle: ''
+    });
+  }
+
+  changeBoardInput = (e:React.FormEvent<HTMLInputElement>) => {
+    this.setState({
+      boardTitle:e.currentTarget.value
     })
+  }
+
+  createBoard = () => {
+    this.props.boardStore?.createBoard(this.state.boardTitle);
+    this.setState({
+      boardDisplay: 'block',
+      createBoardDisplay: 'none',
+      boardTitle: '',
+    });
   }
 
   render(){
@@ -54,9 +71,9 @@ class Board extends React.Component<Props> {
                 <Icon name='close'  />
               </span>
             </div>
-            <Input className='box' focus placeholder='Board...'/>
+            <Input className='box' focus placeholder='Board...' onChange={this.changeBoardInput} value={this.state.boardTitle}></Input>
             <div className='text_right box'>
-              <Button content='Create' />
+              <Button content='Create' onClick={this.createBoard}/>
               <Button content='Cancel' onClick={this.closeCreateBoard}/>
             </div>
           </div>
