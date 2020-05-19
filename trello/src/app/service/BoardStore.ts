@@ -9,12 +9,11 @@ class BoardStore {
   createBoardDisplay:string = 'none';
 
   @observable
-  boardList:string[] = ['aaa'];
+  boardList:string[] = ['aaa', 'bbb'];
 
   @action
   createBoard(boardTitle:string) {
     this.boardList = this.boardList.concat(boardTitle);
-    console.log(this.boardList);
   }
 }
 
