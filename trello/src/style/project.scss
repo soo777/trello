@@ -6,6 +6,10 @@
   transform: scale(1.10);
 }
 
+a:-webkit-any-link {
+  color: black;
+}
+
 .text_right{
   text-align: right;
 }
@@ -25,7 +29,6 @@
 .board{
   width: 30%;
   padding: 30px;
-
   .basic{
     padding: 30px;
     background: #78bc6d;

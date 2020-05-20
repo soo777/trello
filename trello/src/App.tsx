@@ -4,6 +4,9 @@ import 'semantic-ui-css/semantic.min.css'
 import ProjectPages from "~/app/pages";
 import { Provider } from "mobx-react";
 import BoardStore from "~/app/service/BoardStore";
+import { AppLayout } from "~/app/ui";
+import { BrowserRouter as Router } from 'react-router-dom';
+import Routes from "~/app/pages/Routes";
 
 const boardStore = new BoardStore();
 
@@ -12,26 +15,14 @@ function App() {
   <Provider
     boardStore={boardStore}
   >
-    <ProjectPages/>
+    <Router>
+      <AppLayout>
+        <Routes/>
+        {/*<ProjectPages/>*/}
+      </AppLayout>
+    </Router>
   </Provider>
   );
 }
-
-// @inject("samplestore")
-// @observer
-// class App extends React.Component<any> {
-//   render() {
-//     return (
-//         <div>
-//           <div>value = {this.props.samplestore.yourStore}</div>
-//           <div>
-//             <button onClick={this.props.samplestore.changeToWorld}>
-//               Change to world
-//             </button>
-//           </div>
-//         </div>
-//     );
-//   }
-// }
 
 export default App;

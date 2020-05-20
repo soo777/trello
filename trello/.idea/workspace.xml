@@ -1,17 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="bd7ff5bb-a1e9-463d-9f6a-484a44925eb6" name="Default Changelist" comment="set structure">
+    <list default="true" id="bd7ff5bb-a1e9-463d-9f6a-484a44925eb6" name="Default Changelist" comment="add Router">
+      <change afterPath="$PROJECT_DIR$/src/app/pages/Routes.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/ui/board/BoardContainer.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/ui/layout/AppLayout.tsx" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/ui/layout/index.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/index.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/ui/ProjectContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/ui/project/ProjectContainer.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/pages/ProjectPages.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/pages/ProjectPages.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/ui/index.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/ui/index.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ui/project/BoardItem.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/ui/project/BoardItem.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/ui/project/ProjectContainer.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/ui/project/ProjectContainer.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/style/project.scss" beforeDir="false" afterPath="$PROJECT_DIR$/src/style/project.scss" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -27,25 +42,31 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="add_unversioned_files" value="true" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/app" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/public/images" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.standard" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.standard" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.standard" value="" />
+    <property name="nodejs_package_manager_path" value="yarn" />
+    <property name="project.structure.last.edited" value="Facets" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="ts.external.directory.path" value="$PROJECT_DIR$/node_modules/typescript/lib" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/app" />
-      <recent name="$PROJECT_DIR$" />
-    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/public/images" />
       <recent name="$PROJECT_DIR$/src/app/ui/project" />
       <recent name="$PROJECT_DIR$/src/app" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/public/images" />
+      <recent name="$PROJECT_DIR$/src/app" />
+      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="SvnConfiguration">
@@ -66,7 +87,18 @@
       <workItem from="1589597734853" duration="11000" />
       <workItem from="1589597751300" duration="1000" />
       <workItem from="1589597759038" duration="4000" />
-      <workItem from="1589597769403" duration="18000" />
+      <workItem from="1589597769403" duration="104000" />
+      <workItem from="1589684914039" duration="24000" />
+      <workItem from="1589684940646" duration="2000" />
+      <workItem from="1589684945633" duration="6000" />
+      <workItem from="1589684959685" duration="27000" />
+      <workItem from="1589684995569" duration="70000" />
+      <workItem from="1589685073777" duration="3277000" />
+      <workItem from="1589688841206" duration="6835000" />
+      <workItem from="1589792910699" duration="5896000" />
+      <workItem from="1589880004151" duration="5103000" />
+      <workItem from="1589932831100" duration="40000" />
+      <workItem from="1589966812906" duration="226000" />
     </task>
     <task id="LOCAL-00001" summary="set dev-server, semantic-ui.&#10;finish setting.">
       <created>1589448489135</created>
@@ -82,7 +114,35 @@
       <option name="project" value="LOCAL" />
       <updated>1589504165123</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="dev board page">
+      <created>1589597848835</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1589597848835</updated>
+    </task>
+    <task id="LOCAL-00004" summary="add creating-board-box">
+      <created>1589695191116</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1589695191116</updated>
+    </task>
+    <task id="LOCAL-00005" summary="add create boardList">
+      <created>1589795991410</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1589795991411</updated>
+    </task>
+    <task id="LOCAL-00006" summary="show boards in main">
+      <created>1589880371006</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1589880371006</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -91,13 +151,22 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="set dev-server, semantic-ui.&#10;finish setting." />
     <MESSAGE value="set structure" />
-    <option name="LAST_COMMIT_MESSAGE" value="set structure" />
+    <MESSAGE value="dev board page" />
+    <MESSAGE value="add creating-board-box" />
+    <MESSAGE value="add create boardList" />
+    <MESSAGE value="show boards in main" />
+    <MESSAGE value="add Router" />
+    <option name="LAST_COMMIT_MESSAGE" value="add Router" />
   </component>
   <component name="WindowStateProjectService">
     <state x="2510" y="361" key="#ESLint" timestamp="1589449903480">
       <screen x="1680" y="-127" width="1920" height="1177" />
     </state>
     <state x="2510" y="361" key="#ESLint/1680.-127.1920.1177/0.23.1680.1027@1680.-127.1920.1177" timestamp="1589449903480" />
+    <state x="2274" y="147" key="#Inspections" timestamp="1589797581862">
+      <screen x="1680" y="-127" width="1920" height="1177" />
+    </state>
+    <state x="2274" y="147" key="#Inspections/1680.-127.1920.1177/0.23.1680.1027@1680.-127.1920.1177" timestamp="1589797581862" />
     <state x="2240" y="127" width="800" height="717" key="#Intentions" timestamp="1589449257700">
       <screen x="1680" y="-127" width="1920" height="1177" />
     </state>
@@ -110,14 +179,34 @@
       <screen x="1680" y="-127" width="1920" height="1177" />
     </state>
     <state x="2378" y="215" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/1680.-127.1920.1177/0.23.1680.1027@1680.-127.1920.1177" timestamp="1589449088645" />
-    <state x="2247" y="170" key="CommitChangelistDialog2" timestamp="1589597781198">
-      <screen x="1680" y="23" width="1920" height="1057" />
-    </state>
-    <state x="2247" y="170" key="CommitChangelistDialog2/0.23.1680.1027/1680.23.1920.1057@1680.23.1920.1057" timestamp="1589597781198" />
-    <state x="2247" y="37" key="CommitChangelistDialog2/1680.-127.1920.1177/0.23.1680.1027@1680.-127.1920.1177" timestamp="1589504164965" />
-    <state x="2240" y="201" key="Vcs.Push.Dialog.v2" timestamp="1589504169596">
+    <state x="2247" y="37" key="CommitChangelistDialog2" timestamp="1589967004141">
       <screen x="1680" y="-127" width="1920" height="1177" />
     </state>
-    <state x="2240" y="201" key="Vcs.Push.Dialog.v2/1680.-127.1920.1177/0.23.1680.1027@1680.-127.1920.1177" timestamp="1589504169596" />
+    <state x="2247" y="170" key="CommitChangelistDialog2/0.23.1680.1027/1680.23.1920.1057@1680.23.1920.1057" timestamp="1589597848696" />
+    <state x="496" y="166" key="CommitChangelistDialog2/0.23.1680.1027@0.23.1680.1027" timestamp="1589696734616" />
+    <state x="2247" y="37" key="CommitChangelistDialog2/1680.-127.1920.1177/0.23.1680.1027@1680.-127.1920.1177" timestamp="1589967004141" />
+    <state x="328" y="118" key="SettingsEditor" timestamp="1589685269636">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="328" y="118" key="SettingsEditor/0.23.1680.1027@0.23.1680.1027" timestamp="1589685269636" />
+    <state x="2240" y="201" key="Vcs.Push.Dialog.v2" timestamp="1589880371886">
+      <screen x="1680" y="-127" width="1920" height="1177" />
+    </state>
+    <state x="2240" y="318" key="Vcs.Push.Dialog.v2/0.23.1680.1027/1680.23.1920.1057@1680.23.1920.1057" timestamp="1589597850330" />
+    <state x="490" y="310" key="Vcs.Push.Dialog.v2/0.23.1680.1027@0.23.1680.1027" timestamp="1589695193371" />
+    <state x="2240" y="201" key="Vcs.Push.Dialog.v2/1680.-127.1920.1177/0.23.1680.1027@1680.-127.1920.1177" timestamp="1589880371886" />
+    <state x="541" y="291" width="598" height="490" key="find.popup" timestamp="1589694811348">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="541" y="291" width="598" height="490" key="find.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1589694811348" />
+    <state x="208" y="199" key="new project wizard" timestamp="1589685156172">
+      <screen x="0" y="23" width="1680" height="1027" />
+    </state>
+    <state x="208" y="199" key="new project wizard/0.23.1680.1027@0.23.1680.1027" timestamp="1589685156172" />
+    <state x="2257" y="133" width="766" height="775" key="search.everywhere.popup" timestamp="1589794412165">
+      <screen x="1680" y="-127" width="1920" height="1177" />
+    </state>
+    <state x="505" y="250" width="670" height="676" key="search.everywhere.popup/0.23.1680.1027@0.23.1680.1027" timestamp="1589685256057" />
+    <state x="2257" y="133" width="766" height="775" key="search.everywhere.popup/1680.-127.1920.1177/0.23.1680.1027@1680.-127.1920.1177" timestamp="1589794412165" />
   </component>
 </project>

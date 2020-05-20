@@ -8,10 +8,6 @@ class ProjectContainer extends React.Component {
 
     return(
       <>
-        <div className='title'>
-          <img src='/images/light_64.png'/>
-        </div>
-
         <div className='flex_overflow'>
           <Board/>
           <BoardList/>
