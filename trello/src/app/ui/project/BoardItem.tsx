@@ -12,7 +12,7 @@ class BoardItem extends React.Component<Props> {
 
     return(
       <div className='board'>
-        <Link to="/board">
+        <Link to={"/board/" + boardTitle}>
           <div
             className='basic'
             // style={{display:this.state.boardDisplay}}
