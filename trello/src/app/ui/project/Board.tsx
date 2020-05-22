@@ -11,6 +11,18 @@ interface Props {
 @observer
 class Board extends React.Component<Props> {
 
+  componentDidMount () {
+    const a = JSON.parse(localStorage.getItem('board')!);
+    console.log(localStorage.getItem('board'));
+
+    if(a){
+      for(let i=0; i<a.length; i++){
+        console.log(a[i].name);
+      }
+    }
+
+  }
+
   state = {
     boardDisplay: 'block',
     createBoardDisplay: 'none',
