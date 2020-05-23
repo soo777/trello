@@ -12,15 +12,16 @@ interface Props {
 class Board extends React.Component<Props> {
 
   componentDidMount () {
-    const a = JSON.parse(localStorage.getItem('board')!);
+    const boards = JSON.parse(localStorage.getItem('board')!);
     console.log(localStorage.getItem('board'));
 
-    if(a){
-      for(let i=0; i<a.length; i++){
-        console.log(a[i].name);
-      }
-    }
+    this.props.boardStore!.setBoardList(boards);
 
+    // if(boards){
+    //   for(let i=0; i<boards.length; i++){
+    //     console.log(boards[i]);
+    //   }
+    // }
   }
 
   state = {

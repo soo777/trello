@@ -12,22 +12,21 @@ interface Props {
 class BoardList extends React.Component<Props> {
 
   render(){
-    const { boardList } = this.props.boardStore!;
+    let { boardList } = this.props.boardStore!;
 
-    let boardList1 = JSON.parse(localStorage.getItem('board')!);
-    console.log(boardList1);
-    if(!boardList1){
-      boardList1 = [];
+    // let boardList1 = JSON.parse(localStorage.getItem('board')!);
+    // console.log(boardList1);
+    if(!boardList){
+      boardList = [];
+      this.props.boardStore!.setBoardNull();
     }
-
-    console.log(this.props.boardStore!.boardList);
 
     return(
       <>
         {
           // boardList.map((data,index) => (
-          boardList1.map((data:any,index:any) => (
-            <BoardItem boardTitle={data} key={index}/>
+          boardList.map((data:any,index:any) => (
+            <BoardItem boardTitle={data.title} key={index}/>
           ))
         }
       </>
