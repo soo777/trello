@@ -1,6 +1,6 @@
 import React from 'react';
-import Board from "~/app/ui/project/Board";
-import BoardList from "~/app/ui/project/BoardList";
+import Project from "~/app/ui/project/Project";
+import ProjectList from "~/app/ui/project/ProjectList";
 
 class ProjectContainer extends React.Component {
 
@@ -9,8 +9,8 @@ class ProjectContainer extends React.Component {
     return(
       <>
         <div className='flex_overflow'>
-          <Board/>
-          <BoardList/>
+          <Project/>
+          <ProjectList/>
         </div>
       </>
     )
