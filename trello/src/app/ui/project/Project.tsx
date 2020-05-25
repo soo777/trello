@@ -13,9 +13,10 @@ class Project extends React.Component<Props> {
 
   componentDidMount () {
     const projects = JSON.parse(localStorage.getItem('project')!);
-    console.log(localStorage.getItem('project'));
 
-    this.props.projectStore!.setProjectList(projects);
+    if(projects) {
+      this.props.projectStore!.setProjectList(projects);
+    }
 
     // if(projects){
     //   for(let i=0; i<projects.length; i++){

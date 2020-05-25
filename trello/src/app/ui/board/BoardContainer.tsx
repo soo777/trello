@@ -12,10 +12,33 @@ class BoardContainer extends React.Component<{match:any}>{
     // console.log(name);
   }
 
+  onKeyPress = () => {
+    console.log('enter');
+  }
+
   render(){
     return(
       <>
-        board
+        <div className="flex_overflow">
+
+          <div className="board">
+
+            <div className="basic">
+              <Icon name="plus" className="plus"/>
+            </div>
+
+          </div>
+
+          <div className="board">
+
+            <div className="wrapper">
+              <Input className="input" onKeyPress={this.onKeyPress} />
+            </div>
+
+          </div>
+
+        </div>
+
       </>
     )
   }
