@@ -1,10 +1,7 @@
-
-
-
-
 .board{
   width: 25%;
   padding: 30px;
+
   .basic{
     padding: 30px;
     background: #efefd7;
@@ -38,6 +35,29 @@
     border-radius: 10px;
     .input{
       width: 100%;
+    }
+  }
+
+  .list{
+    //padding: 20px;
+    //background: #efefd7;
+    border: 2.5px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0px 3px rgba(0,0,0,0.16), 0 0px 3px rgba(0,0,0,0.23);
+    //border-radius: 10px;
+    .input{
+      padding: 20px 20px 10px 20px;
+      border-radius: 10px;
+      width: 100%;
+    }
+    .box{
+      padding: 10px 20px 10px 20px;
+      .item{
+        padding: 14px 7px 14px 7px;
+        //margin: 10px 0px 10px 0px;
+        border: 2.5px solid rgba(255, 255, 255, 0.8);
+        box-shadow: 0 3px 3px rgba(0,0,0,0.16), 0 3px 3px rgba(0,0,0,0.23);
+
+      }
     }
   }
 
