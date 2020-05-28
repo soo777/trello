@@ -7,7 +7,7 @@ const Routes = () => (
   <>
     <Switch>
       <Route exact path="/" component={ ProjectPages } />
-      <Route path="/project/:name" component={ BoardContainer } />
+      <Route path="/project/:name/:ProjectIndex" component={ BoardContainer } />
     </Switch>
 
   </>

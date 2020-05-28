@@ -9,7 +9,7 @@ class ProjectStore {
   createProjectDisplay: string = "none";
 
   @observable
-  projectList: { index: number, title: string }[] = [];
+  projectList: { projectIndex: number, title: string }[] = [];
 
   @observable
   projectIndex: number = 0;
@@ -27,7 +27,7 @@ class ProjectStore {
       this.projectIndex = index;
     }
 
-    const project = [{ "index": this.projectIndex, "title": projectTitle }];
+    const project = [{ "projectIndex": this.projectIndex, "title": projectTitle }];
     this.projectList = this.projectList.concat(project);
 
     let list = this.projectList;

@@ -28,6 +28,7 @@ class BoardContainer extends React.Component<Props, State> {
   componentDidMount () {
     let { match } = this.props;
     console.log(match.params.name);
+    console.log(match.params.index);
 
     // store로 collection 만들어서 관리
     // const name = localStorage.getItem('name');
