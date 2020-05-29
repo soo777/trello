@@ -4,6 +4,7 @@ import autobind from "~/app/service/autobindDecorator";
 import { inject, observer } from "mobx-react";
 import ListStore from "~/app/service/ListStore";
 import ListItem from "~/app/ui/board/ListItem";
+import BoardList from "~/app/ui/board/BoardList";
 
 interface Props {
   listStore?: ListStore;
@@ -53,7 +54,12 @@ class BoardContainer extends React.Component<Props, State> {
   render () {
     const { addOn } = this.state;
 
-    const { list } = this.props.listStore!;
+    let { boardList, list } = this.props.listStore!;
+
+    if(!boardList){
+      boardList = [];
+      this.props.listStore!.setBoardListNull();
+    }
 
     return (
       <>
@@ -85,19 +91,13 @@ class BoardContainer extends React.Component<Props, State> {
             </div>
           </div>
 
-          <div className="board">
-            <div className="list">
-              <Input className="input" onKeyPress={this.addList}/>
-              {
-                list.map((data: any, index: any) => (
-                  <ListItem title={data.title}/>
-                ))
-              }
-            </div>
-          </div>
+          {
+            boardList.map((data:any, index:any) => (
+              <BoardList title={data.title}/>
+            ))
+          }
 
         </div>
-
       </>
     );
   }
