@@ -7,7 +7,8 @@ import autobind from "~/app/service/autobindDecorator";
 
 interface Props {
   listStore?: ListStore;
-  title:string
+  title:string;
+  boardIndex:number;
 }
 
 @inject("listStore")
@@ -18,13 +19,13 @@ class BoardList extends React.Component<Props, any>{
   addList = (e: any) => {
     if (e.key === "Enter") {
       const item = e.currentTarget.value;
-      this.props.listStore!.addList(item)
+      this.props.listStore!.addList(item, this.props.boardIndex)
     }
   };
 
   render(){
     const { list } = this.props.listStore!;
-    const { title} = this.props;
+    const { boardIndex, title } = this.props;
 
     return(
       <>

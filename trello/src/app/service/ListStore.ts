@@ -13,14 +13,21 @@ class ListStore {
   boardListIndex: number = 0;
 
   @observable
-  list: { index: number, title: string }[] = [];
+  list: {boardIndex:number, index: number, title: string }[] = [];
 
   @observable
   listIndex: number = 0;
 
   @action
-  addList (title: string) {
-    const arr = { index: this.listIndex++, title: title };
+  addBoard (title:string){
+    const arr = { index: this.boardListIndex++, title: title};
+    this.boardList = this.boardList.concat(arr);
+  }
+
+  @action
+  addList (title: string, boardIndex: number) {
+    console.log(boardIndex);
+    const arr = { boardIndex:boardIndex, index: this.listIndex++, title: title };
     this.list = this.list.concat(arr);
   }
 

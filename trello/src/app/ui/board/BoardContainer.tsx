@@ -36,10 +36,11 @@ class BoardContainer extends React.Component<Props, State> {
     // console.log(name);
   }
 
-  addList = (e: any) => {
+  addBoard = (e: any) => {
     if (e.key === "Enter") {
       const item = e.currentTarget.value;
-      this.props.listStore!.addList(item)
+      this.props.listStore!.addBoard(item);
+      this.setState({ addOn: true });
     }
   };
 
@@ -56,7 +57,7 @@ class BoardContainer extends React.Component<Props, State> {
 
     let { boardList, list } = this.props.listStore!;
 
-    if(!boardList){
+    if (!boardList) {
       boardList = [];
       this.props.listStore!.setBoardListNull();
     }
@@ -68,13 +69,11 @@ class BoardContainer extends React.Component<Props, State> {
           <div className="board">
             {
               addOn
-                ? <div className="basic">
-                  <span onClick={this.addOn}>
-                    <Icon name="plus" className="plus"/>
-                  </span>
+                ? <div className="basic" onClick={this.addOn}>
+                  <Icon name="plus" className="plus"/>
                 </div>
                 : <div className="addWrapper">
-                  <Input className="input" onKeyPress={this.addList}/>
+                  <Input className="input" onKeyPress={this.addBoard}/>
                   <span className="close" onClick={this.addOff}>
                     <Icon name="plus" className="close"/>
                   </span>
@@ -82,18 +81,12 @@ class BoardContainer extends React.Component<Props, State> {
             }
           </div>
 
-          <div className="board">
-            <div className="wrapper">
-              <Input className="input" onKeyPress={this.addList}/>
-              {/*<span className="close">*/}
-              {/*  <Icon name="plus" className="close"/>*/}
-              {/*</span>*/}
-            </div>
-          </div>
-
           {
-            boardList.map((data:any, index:any) => (
-              <BoardList title={data.title}/>
+            boardList.map((data: any, index: any) => (
+              <BoardList
+                title={data.title}
+                boardIndex={data.index}
+              />
             ))
           }
 
