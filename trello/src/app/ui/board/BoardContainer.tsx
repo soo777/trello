@@ -28,8 +28,9 @@ class BoardContainer extends React.Component<Props, State> {
 
   componentDidMount () {
     let { match } = this.props;
-    console.log(match.params.name);
-    console.log(match.params.index);
+    console.log(match);
+    // console.log(match.params.name);
+    // console.log(match.params.projectIndex);
 
     // store로 collection 만들어서 관리
     // const name = localStorage.getItem('name');
@@ -37,7 +38,7 @@ class BoardContainer extends React.Component<Props, State> {
   }
 
   addBoard = (e: any) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" && e.currentTarget.value !== '') {
       const item = e.currentTarget.value;
       this.props.listStore!.addBoard(item);
       this.setState({ addOn: true });
