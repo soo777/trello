@@ -16,13 +16,13 @@ class ProjectStore {
 
   @action
   createProject (projectTitle: string) {
-    let index = parseInt(localStorage.getItem("index")!);
+    let index = parseInt(localStorage.getItem("projectIndex")!);
     if (index >= 0) {
       index += 1;
-      localStorage.setItem("index", index.toString());
+      localStorage.setItem("projectIndex", index.toString());
       this.projectIndex = index;
     } else {
-      localStorage.setItem('index', '0');
+      localStorage.setItem('projectIndex', '0');
       index = 0;
       this.projectIndex = index;
     }

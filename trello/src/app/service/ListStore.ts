@@ -3,37 +3,52 @@ import { action, observable } from "mobx";
 class ListStore {
 
   @observable
-  // boardList: { index: number, title: string }[] = [];
-  boardList: { index: number, title: string }[] = [
-    { index: 0, title: "aaa" },
-    { index: 1, title: "bbb" }
-    ];
+  boardList: { index: number, title: string }[] = [];
 
   @observable
-  boardListIndex: number = 0;
+  boardIndex: number = 0;
 
   @observable
-  list: {boardIndex:number, index: number, title: string }[] = [];
+  list: { boardIndex: number, index: number, title: string }[] = [];
 
   @observable
   listIndex: number = 0;
 
   @action
-  addBoard (title:string){
-    const arr = { index: this.boardListIndex++, title: title};
+  addBoard (title: string, projectIndex: number) {
+    let index = parseInt(localStorage.getItem("boardIndex")!);
+    if (index >= 0) {
+      index += 1;
+      localStorage.setItem("boardIndex", index.toString());
+      this.boardIndex = index;
+    } else {
+      localStorage.setItem('boardIndex', '0');
+      index = 0;
+      this.boardIndex = index;
+    }
+
+    const arr = { index: this.boardIndex++, title: title };
     this.boardList = this.boardList.concat(arr);
+
+    let boardList = this.boardList;
+    localStorage.setItem("project"+projectIndex, JSON.stringify(boardList));
   }
 
   @action
   addList (title: string, boardIndex: number) {
     console.log(boardIndex);
-    const arr = { boardIndex:boardIndex, index: this.listIndex++, title: title };
+    const arr = { boardIndex: boardIndex, index: this.listIndex++, title: title };
     this.list = this.list.concat(arr);
   }
 
   @action
-  setBoardListNull() {
+  setBoardListNull () {
     this.boardList = [];
+  }
+
+  @action
+  setBoardList(boardList:any) {
+    this.boardList = boardList;
   }
 
 }
