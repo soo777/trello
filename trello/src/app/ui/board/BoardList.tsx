@@ -20,12 +20,26 @@ interface State {
 @observer
 @autobind
 class BoardList extends React.Component<Props, State> {
-
   constructor (props: any) {
     super(props);
     this.state = {
       input: "",
     };
+  }
+
+  componentDidMount () {
+    const list = JSON.parse(localStorage.getItem('list')!);
+    const boardIndex = this.props.boardIndex;
+
+    if(list !== null) {
+      const arr: any = [];
+      list.forEach(function(element:any){
+        if(element.boardIndex === boardIndex){
+          arr.push(element);
+        }
+      })
+      this.props.listStore!.setList(arr);
+    }
   }
 
   enterInput = (e:any) => {
@@ -42,9 +56,14 @@ class BoardList extends React.Component<Props, State> {
   };
 
   render () {
-    const { list } = this.props.listStore!;
+    let { list } = this.props.listStore!;
     const { boardIndex, title } = this.props;
     const { input } = this.state;
+
+    if (!list) {
+      list = [];
+      this.props.listStore!.setListNull();
+    }
 
     return (
       <>

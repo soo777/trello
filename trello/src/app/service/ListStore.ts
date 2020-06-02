@@ -9,7 +9,7 @@ class ListStore {
   boardIndex: number = 0;
 
   @observable
-  list: { boardIndex: number, index: number, title: string }[] = [];
+  list: { boardIndex: number, listIndex: number, title: string }[] = [];
 
   @observable
   listIndex: number = 0;
@@ -43,8 +43,27 @@ class ListStore {
 
   @action
   addList (title: string, boardIndex: number) {
-    const arr = { boardIndex: boardIndex, index: this.listIndex++, title: title };
+    let listIndex = parseInt(localStorage.getItem("listIndex")!);
+    if (listIndex >= 0) {
+      listIndex += 1;
+      localStorage.setItem("listIndex", listIndex.toString());
+      this.listIndex = listIndex;
+    } else {
+      listIndex = 0;
+      localStorage.setItem('listIndex', listIndex.toString());
+      this.listIndex = listIndex;
+    }
+
+    const arr = { boardIndex: boardIndex, listIndex: this.listIndex++, title: title };
     this.list = this.list.concat(arr);
+
+    let listStorage = JSON.parse(localStorage.getItem('list')!);
+    if(listStorage === null) {
+      listStorage = [];
+    }
+    listStorage = listStorage.concat(arr);
+
+    localStorage.setItem("list", JSON.stringify(listStorage));
   }
 
   @action
@@ -56,6 +75,17 @@ class ListStore {
   setBoardList(boardList:any) {
     this.boardList = boardList;
   }
+
+  @action
+  setListNull () {
+    this.boardList = [];
+  }
+
+  @action
+  setList(list:any) {
+    this.list = list;
+  }
+
 
 }
 
