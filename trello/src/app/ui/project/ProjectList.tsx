@@ -25,7 +25,7 @@ class ProjectList extends React.Component<Props> {
       <>
         {
           projectList.map((data:any,index:any) => (
-            <ProjectItem projectTitle={data.title} projectIndex={data.projectIndex} key={data.index} />
+            <ProjectItem projectTitle={data.title} projectIndex={data.projectIndex} key={index} />
           ))
         }
       </>

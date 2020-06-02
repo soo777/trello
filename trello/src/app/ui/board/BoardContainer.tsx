@@ -29,19 +29,22 @@ class BoardContainer extends React.Component<Props, State> {
 
   componentDidMount () {
     let { match } = this.props;
-    console.log(match);
-    console.log(match.params.name);
-    console.log(match.params.projectIndex);
-
-    // store로 collection 만들어서 관리
-    // const name = localStorage.getItem('name');
-    // console.log(name);
+    // console.log(match);
+    // console.log(match.params.name);
+    // console.log(match.params.projectIndex);
 
     const projectIndex = match.params.projectIndex;
-    const boardList = JSON.parse(localStorage.getItem('project'+projectIndex)!);
-    console.log(boardList);
+    const boardList = JSON.parse(localStorage.getItem('board')!);
 
-    this.props.listStore!.setBoardList(boardList);
+    if(boardList !== null) {
+      const arr: any = [];
+      boardList.forEach(function(element:any){
+        if(element.projectIndex === projectIndex){
+          arr.push(element);
+        }
+      })
+      this.props.listStore!.setBoardList(arr);
+    }
   }
 
   addBoard = (e: any) => {
@@ -64,7 +67,7 @@ class BoardContainer extends React.Component<Props, State> {
   render () {
     const { addOn } = this.state;
 
-    let { boardList, list } = this.props.listStore!;
+    let { boardList, } = this.props.listStore!;
 
     if (!boardList) {
       boardList = [];
@@ -89,12 +92,11 @@ class BoardContainer extends React.Component<Props, State> {
                 </div>
             }
           </div>
-
           {
             boardList.map((data: any, index: any) => (
               <BoardList
                 title={data.title}
-                boardIndex={data.index}
+                boardIndex={data.boardIndex}
                 key={index}
               />
             ))

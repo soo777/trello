@@ -57,7 +57,7 @@ class BoardList extends React.Component<Props, State> {
             {
               list.map((data: any, index: any) => (
                 data.boardIndex === boardIndex
-                  ? <ListItem title={data.title}/>
+                  ? <ListItem title={data.title} key={index}/>
                   : ""
               ))
             }

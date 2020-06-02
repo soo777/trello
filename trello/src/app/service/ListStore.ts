@@ -3,7 +3,7 @@ import { action, observable } from "mobx";
 class ListStore {
 
   @observable
-  boardList: { index: number, title: string }[] = [];
+  boardList: { projectIndex: number, boardIndex: number, title: string }[] = [];
 
   @observable
   boardIndex: number = 0;
@@ -22,21 +22,27 @@ class ListStore {
       localStorage.setItem("boardIndex", index.toString());
       this.boardIndex = index;
     } else {
-      localStorage.setItem('boardIndex', '0');
       index = 0;
+      localStorage.setItem('boardIndex', index.toString());
       this.boardIndex = index;
     }
 
-    const arr = { index: this.boardIndex++, title: title };
+    const arr = { projectIndex: projectIndex, boardIndex: this.boardIndex, title: title };
     this.boardList = this.boardList.concat(arr);
 
-    let boardList = this.boardList;
-    localStorage.setItem("project"+projectIndex, JSON.stringify(boardList));
+    let boardListStorage = JSON.parse(localStorage.getItem('board')!);
+    if(boardListStorage === null) {
+      boardListStorage = [];
+    }
+    boardListStorage = boardListStorage.concat(arr);
+
+    // const boardList = this.boardList;
+    // localStorage.setItem("board", JSON.stringify(boardList));
+    localStorage.setItem("board", JSON.stringify(boardListStorage));
   }
 
   @action
   addList (title: string, boardIndex: number) {
-    console.log(boardIndex);
     const arr = { boardIndex: boardIndex, index: this.listIndex++, title: title };
     this.list = this.list.concat(arr);
   }
