@@ -14,6 +14,9 @@ class ListStore {
   @observable
   listIndex: number = 0;
 
+  @observable
+  card: any = [];
+
   @action
   addBoard (title: string, projectIndex: number) {
     let index = parseInt(localStorage.getItem("boardIndex")!);
@@ -86,6 +89,20 @@ class ListStore {
     this.list = list;
   }
 
+  @action
+  addCard(arr:any, boardIndex:number){
+    this.card = this.card.concat(arr);
+
+    console.log(this.card[0].title)
+    // this.card = this.card.filter(this.card.boardIndex !== boardIndex);
+    console.log(this.card)
+  }
+
+  @action
+  setCardNull(){
+    this.card = [];
+    console.log('card null')
+  }
 
 }
 

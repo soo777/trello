@@ -2,12 +2,14 @@ import React from 'react';
 import { Button, Icon, Input } from "semantic-ui-react";
 import ProjectStore from "~/app/service/ProjectStore";
 import { inject, observer } from "mobx-react";
+import ListStore from "~/app/service/ListStore";
 
 interface Props {
   projectStore?:ProjectStore;
+  listStore?:ListStore;
 }
 
-@inject('projectStore')
+@inject('projectStore', 'listStore')
 @observer
 class Project extends React.Component<Props> {
 
@@ -23,6 +25,9 @@ class Project extends React.Component<Props> {
     //     console.log(projects[i]);
     //   }
     // }
+
+    console.log('home');
+    this.props.listStore!.setCardNull();
   }
 
   state = {
