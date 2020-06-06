@@ -59,6 +59,7 @@ class ListStore {
 
     const arr = { boardIndex: boardIndex, listIndex: this.listIndex++, title: title };
     this.list = this.list.concat(arr);
+    this.card = this.card.concat(arr);
 
     let listStorage = JSON.parse(localStorage.getItem('list')!);
     if(listStorage === null) {
@@ -80,28 +81,13 @@ class ListStore {
   }
 
   @action
-  setListNull () {
-    this.boardList = [];
-  }
-
-  @action
-  setList(list:any) {
-    this.list = list;
-  }
-
-  @action
-  addCard(arr:any, boardIndex:number){
+  setList(arr:any){
     this.card = this.card.concat(arr);
-
-    console.log(this.card[0].title)
-    // this.card = this.card.filter(this.card.boardIndex !== boardIndex);
-    console.log(this.card)
   }
 
   @action
-  setCardNull(){
+  setListNull(){
     this.card = [];
-    console.log('card null')
   }
 
 }

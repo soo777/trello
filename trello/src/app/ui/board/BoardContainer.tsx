@@ -43,8 +43,14 @@ class BoardContainer extends React.Component<Props, State> {
           arr.push(element);
         }
       })
+      console.log(arr)
       this.props.listStore!.setBoardList(arr);
     }
+  }
+
+  componentDidUpdate (prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any) {
+    console.log('board update');
+
   }
 
   addBoard = (e: any) => {

@@ -31,7 +31,7 @@ class BoardList extends React.Component<Props, State> {
     const list = JSON.parse(localStorage.getItem('list')!);
     const boardIndex = this.props.boardIndex;
     // console.log(list);
-    // console.log(boardIndex)
+    console.log(boardIndex)
 
     if(list !== null) {
       const arr: any = [];
@@ -40,10 +40,19 @@ class BoardList extends React.Component<Props, State> {
           arr.push(element);
         }
       })
-      console.log(arr)
+      // console.log(arr);
       this.props.listStore!.setList(arr);
-      this.props.listStore!.addCard(arr, boardIndex);
     }
+
+    // console.log(this.props.listStore!.card);
+  }
+
+  componentDidUpdate (prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any) {
+    console.log('update')
+
+    const boardIndex = this.props.boardIndex;
+    console.log(boardIndex)
+
   }
 
   enterInput = (e:any) => {
@@ -60,13 +69,9 @@ class BoardList extends React.Component<Props, State> {
   };
 
   render () {
-    let { list, card } = this.props.listStore!;
+    let { card } = this.props.listStore!;
     const { boardIndex, title, } = this.props;
     const { input } = this.state;
-
-    if (!list) {
-      list = [];
-    }
 
     return (
       <>

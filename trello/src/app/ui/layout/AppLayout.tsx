@@ -7,7 +7,7 @@ class AppLayout extends React.Component{
     return(
       <>
         <div className='title'>
-          <Link to="/">
+          <Link to={"/"}>
           <img src='/images/light_64.png' alt=''/>
           </Link>
         </div>

@@ -20,14 +20,8 @@ class Project extends React.Component<Props> {
       this.props.projectStore!.setProjectList(projects);
     }
 
-    // if(projects){
-    //   for(let i=0; i<projects.length; i++){
-    //     console.log(projects[i]);
-    //   }
-    // }
-
     console.log('home');
-    this.props.listStore!.setCardNull();
+    this.props.listStore!.setListNull();
   }
 
   state = {
