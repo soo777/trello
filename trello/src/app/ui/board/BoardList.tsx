@@ -4,7 +4,6 @@ import ListItem from "~/app/ui/board/ListItem";
 import ListStore from "~/app/service/ListStore";
 import { inject, observer } from "mobx-react";
 import autobind from "~/app/service/autobindDecorator";
-import { values } from "mobx";
 
 interface Props {
   listStore?: ListStore;
@@ -30,8 +29,6 @@ class BoardList extends React.Component<Props, State> {
   componentDidMount () {
     const list = JSON.parse(localStorage.getItem('list')!);
     const boardIndex = this.props.boardIndex;
-    // console.log(list);
-    console.log(boardIndex)
 
     if(list !== null) {
       const arr: any = [];
@@ -40,19 +37,8 @@ class BoardList extends React.Component<Props, State> {
           arr.push(element);
         }
       })
-      // console.log(arr);
       this.props.listStore!.setList(arr);
     }
-
-    // console.log(this.props.listStore!.card);
-  }
-
-  componentDidUpdate (prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any) {
-    console.log('update')
-
-    const boardIndex = this.props.boardIndex;
-    console.log(boardIndex)
-
   }
 
   enterInput = (e:any) => {

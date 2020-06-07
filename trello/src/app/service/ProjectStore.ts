@@ -31,7 +31,6 @@ class ProjectStore {
     this.projectList = this.projectList.concat(project);
 
     let list = this.projectList;
-    console.log(list);
     localStorage.setItem("project", JSON.stringify(list));
   }
 

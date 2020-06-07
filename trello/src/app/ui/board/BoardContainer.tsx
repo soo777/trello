@@ -14,6 +14,7 @@ interface Props {
 
 interface State {
   addOn: boolean;
+  list: any;
 }
 
 @inject("listStore")
@@ -24,6 +25,7 @@ class BoardContainer extends React.Component<Props, State> {
     super(props);
     this.state = {
       addOn: true,
+      list: [],
     };
   }
 
@@ -43,14 +45,9 @@ class BoardContainer extends React.Component<Props, State> {
           arr.push(element);
         }
       })
-      console.log(arr)
+      this.setState({list:arr})
       this.props.listStore!.setBoardList(arr);
     }
-  }
-
-  componentDidUpdate (prevProps: Readonly<Props>, prevState: Readonly<State>, snapshot?: any) {
-    console.log('board update');
-
   }
 
   addBoard = (e: any) => {
@@ -60,6 +57,7 @@ class BoardContainer extends React.Component<Props, State> {
       this.props.listStore!.addBoard(boardTitle, projectIndex);
       this.setState({ addOn: true });
     }
+    this.setState({list:this.props.listStore!.boardList})
   };
 
   addOn = () => {
@@ -99,7 +97,8 @@ class BoardContainer extends React.Component<Props, State> {
             }
           </div>
           {
-            boardList.map((data: any, index: any) => (
+            // boardList.map((data: any, index: any) => (
+            this.state.list.map((data: any, index: any) => (
               <BoardList
                 title={data.title}
                 boardIndex={data.boardIndex}

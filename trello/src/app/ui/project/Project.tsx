@@ -20,7 +20,6 @@ class Project extends React.Component<Props> {
       this.props.projectStore!.setProjectList(projects);
     }
 
-    console.log('home');
     this.props.listStore!.setListNull();
   }
 
