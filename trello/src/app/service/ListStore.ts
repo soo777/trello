@@ -9,7 +9,7 @@ class ListStore {
   boardIndex: number = 0;
 
   @observable
-  list: { boardIndex: number, listIndex: number, title: string }[] = [];
+  list: { boardIndex: number, listIndex: number, title: string, checked: boolean }[] = [];
 
   @observable
   listIndex: number = 0;
@@ -57,7 +57,7 @@ class ListStore {
       this.listIndex = listIndex;
     }
 
-    const arr = { boardIndex: boardIndex, listIndex: this.listIndex++, title: title };
+    const arr = { boardIndex: boardIndex, listIndex: this.listIndex++, title: title, checked: false };
     this.list = this.list.concat(arr);
     this.card = this.card.concat(arr);
 

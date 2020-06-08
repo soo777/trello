@@ -70,7 +70,13 @@ class BoardList extends React.Component<Props, State> {
             {
               card.map((data: any, index: any) => (
                 data.boardIndex === boardIndex
-                  ? <ListItem title={data.title} key={index}/>
+                  ? <ListItem
+                    boardIndex={data.boardIndex}
+                    listIndex={data.listIndex}
+                    title={data.title}
+                    checked={data.checked}
+                    key={index}
+                  />
                   : ""
               ))
             }
