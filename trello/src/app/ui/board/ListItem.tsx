@@ -39,7 +39,7 @@ class ListItem extends React.Component<Props, State>{
     const arr = { boardIndex: boardIndex, listIndex: listIndex, title: title, checked: checked };
     list.splice(changeIndex, 1, arr);
     localStorage.setItem("list", JSON.stringify(list));
-    
+
     this.setState({
       checked:checked,
     })
