@@ -58,6 +58,7 @@ class ListItem extends React.Component<Props, State>{
             </span>
           </div>
         </div>
+        {/*{this.props.title}*/}
       </>
     )
   }

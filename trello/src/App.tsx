@@ -10,6 +10,7 @@ import ListStore from "~/app/service/ListStore";
 import ProjectStore from "~/app/service/ProjectStore";
 import Board from "~/components/Board";
 import Card from "~/components/Card";
+import List from "~/sample/List";
 
 const projectStore = new ProjectStore();
 const listStore = new ListStore();
@@ -20,12 +21,14 @@ function App() {
     projectStore={projectStore}
     listStore={listStore}
   >
-    <Router>
-      <AppLayout>
-        <Routes/>
-        {/*<ProjectPages/>*/}
-      </AppLayout>
-    </Router>
+    {/*<Router>*/}
+    {/*  <AppLayout>*/}
+    {/*    <Routes/>*/}
+    {/*    /!*<ProjectPages/>*!/*/}
+    {/*  </AppLayout>*/}
+    {/*</Router>*/}
+
+    <List/>
 
     {/*<Board id={"board-1"} className="board">*/}
     {/*  <Card id={"card-1"} className={"card"} draggable="true">*/}
