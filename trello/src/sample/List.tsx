@@ -70,14 +70,14 @@ class List extends React.Component<any, State> {
           onDragEnd={this.dragEnd.bind(this)}
           onDragStart={this.dragStart.bind(this)}>
           {
-            <ListItem
-              boardIndex={i}
-              listIndex={i}
-              title={i}
-              checked={i}
-              key={i}
-            />
-            // item
+            // <ListItem
+            //   boardIndex={i}
+            //   listIndex={i}
+            //   title={i}
+            //   checked={i}
+            //   key={i}
+            // />
+            item
           }
         </li>
       )
