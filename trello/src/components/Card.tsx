@@ -4,16 +4,17 @@ function Card(props:any) {
 
   const dragStart = (e:any) => {
     const target = e.target;
+    console.log(target)
 
     e.dataTransfer.setData('card_id', target.id);
 
     setTimeout(() => {
-      // target.style.display = 'none';
+      target.style.display = 'none';
     }, 0)
   }
 
   const dragOver = (e:any) => {
-    e.stopPropagation();
+    // e.stopPropagation();
   }
 
   return (

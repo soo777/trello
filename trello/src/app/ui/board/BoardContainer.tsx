@@ -6,6 +6,7 @@ import ListStore from "~/app/service/ListStore";
 import ListItem from "~/app/ui/board/ListItem";
 import BoardList from "~/app/ui/board/BoardList";
 import ProjectItem from "~/app/ui/project/ProjectItem";
+import Board from "~/components/Board";
 
 interface Props {
   listStore?: ListStore;
@@ -99,11 +100,13 @@ class BoardContainer extends React.Component<Props, State> {
           {
             // boardList.map((data: any, index: any) => (
             this.state.list.map((data: any, index: any) => (
+              <Board id={data.boardIndex} className="board" key={index}>
               <BoardList
                 title={data.title}
                 boardIndex={data.boardIndex}
                 key={index}
               />
+              </Board>
             ))
           }
 

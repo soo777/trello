@@ -21,12 +21,12 @@ function App() {
     projectStore={projectStore}
     listStore={listStore}
   >
-    {/*<Router>*/}
-    {/*  <AppLayout>*/}
-    {/*    <Routes/>*/}
-    {/*    /!*<ProjectPages/>*!/*/}
-    {/*  </AppLayout>*/}
-    {/*</Router>*/}
+    <Router>
+      <AppLayout>
+        <Routes/>
+        {/*<ProjectPages/>*/}
+      </AppLayout>
+    </Router>
 
     {/*<List/>*/}
 
@@ -38,12 +38,12 @@ function App() {
         <p>card three</p>
       </Card>
     </Board>
-
     <Board id={"board-2"} className="board">
       <Card id={"card-2"} className={"card"} draggable="true">
         <p>card two</p>
       </Card>
     </Board>
+
   </Provider>
   );
 }

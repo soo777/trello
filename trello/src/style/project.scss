@@ -17,7 +17,9 @@ a:-webkit-any-link {
 .flex_overflow{
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
+  //flex-wrap: wrap;
+  overflow: auto;
+  height: 85vh;
 }
 
 .title {

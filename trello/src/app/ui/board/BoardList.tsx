@@ -4,6 +4,7 @@ import ListItem from "~/app/ui/board/ListItem";
 import ListStore from "~/app/service/ListStore";
 import { inject, observer } from "mobx-react";
 import autobind from "~/app/service/autobindDecorator";
+import Card from "~/components/Card";
 
 interface Props {
   listStore?: ListStore;
@@ -70,13 +71,16 @@ class BoardList extends React.Component<Props, State> {
             {
               card.map((data: any, index: any) => (
                 data.boardIndex === boardIndex
-                  ? <ListItem
+                  ?
+                  <Card id={data.listIndex} className={"card"} draggable="true" key={index}>
+                  <ListItem
                     boardIndex={data.boardIndex}
                     listIndex={data.listIndex}
                     title={data.title}
                     checked={data.checked}
                     key={index}
                   />
+                  </Card>
                   : ""
               ))
             }
