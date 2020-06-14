@@ -30,7 +30,7 @@ class ListStore {
       this.boardIndex = index;
     }
 
-    const arr = { projectIndex: projectIndex, boardIndex: this.boardIndex, title: title };
+    const arr = { projectIndex: projectIndex, boardIndex: this.boardIndex, title: title, cards: [] };
     this.boardList = this.boardList.concat(arr);
 
     let boardListStorage = JSON.parse(localStorage.getItem('board')!);
@@ -58,16 +58,34 @@ class ListStore {
     }
 
     const arr = { boardIndex: boardIndex, listIndex: this.listIndex++, title: title, checked: false };
-    this.list = this.list.concat(arr);
+    // this.list = this.list.concat(arr);
     this.card = this.card.concat(arr);
 
-    let listStorage = JSON.parse(localStorage.getItem('list')!);
-    if(listStorage === null) {
-      listStorage = [];
-    }
-    listStorage = listStorage.concat(arr);
+    // let listStorage = JSON.parse(localStorage.getItem('list')!);
+    // if(listStorage === null) {
+    //   listStorage = [];
+    // }
+    // listStorage = listStorage.concat(arr);
+    //
+    // localStorage.setItem("list", JSON.stringify(listStorage));
 
-    localStorage.setItem("list", JSON.stringify(listStorage));
+    let boardStorage = JSON.parse(localStorage.getItem('board')!);
+
+    let arr1;
+    boardStorage.map((data:any, index:any) => {
+      if(data.boardIndex === boardIndex){
+        if(data.cards.length > 0){
+          arr1 = {projectIndex: data.projectIndex, boardIndex: data.boardIndex, title: data.title, cards: data.cards.concat(arr)};
+        } else {
+        let cardArr:any = [];
+          cardArr.push(arr);
+          arr1 = {projectIndex: data.projectIndex, boardIndex: data.boardIndex, title: data.title, cards: cardArr};
+        }
+        boardStorage.splice(index, 1, arr1);
+      }
+    });
+
+    localStorage.setItem("board", JSON.stringify(boardStorage));
   }
 
   @action
