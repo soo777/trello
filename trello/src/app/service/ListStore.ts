@@ -57,7 +57,7 @@ class ListStore {
       this.listIndex = listIndex;
     }
 
-    const arr = { boardIndex: boardIndex, listIndex: this.listIndex++, title: title, checked: false };
+    const arr = { boardIndex: boardIndex, listIndex: 'card_' + this.listIndex++, title: title, checked: false };
     // this.list = this.list.concat(arr);
     this.card = this.card.concat(arr);
 

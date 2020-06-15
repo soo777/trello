@@ -45,21 +45,23 @@ class BoardList extends React.Component<Props, State> {
     const board = JSON.parse(localStorage.getItem('board')!);
     const boardIndex = this.props.boardIndex;
 
-    let list:any = [];
-    board.forEach((data:any)=> {
-      if(data.boardIndex === boardIndex) {
-        list = data.cards;
-      }
-    })
-
-    if(list !== null) {
-      const arr: any = [];
-      list.forEach(function(element:any){
-        if(element.boardIndex === boardIndex){
-          arr.push(element);
+    if(board !== null) {
+      let list:any = [];
+      board.forEach((data:any)=> {
+        if(data.boardIndex === boardIndex) {
+          list = data.cards;
         }
       })
-      this.props.listStore!.setList(arr);
+
+      if(list !== null) {
+        const arr: any = [];
+        list.forEach(function(element:any){
+          if(element.boardIndex === boardIndex){
+            arr.push(element);
+          }
+        })
+        this.props.listStore!.setList(arr);
+      }
     }
   }
 
@@ -93,7 +95,7 @@ class BoardList extends React.Component<Props, State> {
               card.map((data: any, index: any) => (
                 data.boardIndex === boardIndex
                   ?
-                  <Card id={data.listIndex} className={"card"} draggable="true" key={index}>
+                  <Card id={data.listIndex} className={"card"} draggable="true" key={index} checked={data.checked} title={data.title}>
                   <ListItem
                     boardIndex={data.boardIndex}
                     listIndex={data.listIndex}

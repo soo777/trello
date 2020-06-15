@@ -24,6 +24,8 @@ function Card(props:any) {
       draggable={props.draggable}
       onDragStart={dragStart}
       onDragOver={dragOver}
+      title={props.title}
+      aria-required={props.checked}
     >
       {props.children}
     </div>
