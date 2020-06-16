@@ -1,7 +1,17 @@
 import React from 'react';
+import ListStore from "~/app/service/ListStore";
+import { inject, observer } from "mobx-react";
 
-function Board (props:any) {
-  const drop = (e:any) => {
+interface Props {
+  listStore?: ListStore;
+  id:string,
+  className:string,
+}
+
+@inject("listStore")
+@observer
+class Board extends React.Component<Props, any> {
+  drop = (e:any) => {
     e.preventDefault();
 
     // console.log(e.target);
@@ -29,7 +39,8 @@ function Board (props:any) {
     console.log(e.target);
 
     let cardId = '';
-    let boardIndex = '';
+    let deleteBoardIndex = e.dataTransfer.getData('deleteBoardIndex');
+    let insertBoardIndex = '';
     const className = e.target.className;
 
     // 삽입하려는 card html 가져오
@@ -42,11 +53,11 @@ function Board (props:any) {
     // drag drop 위치에 따른 div 설정
     if(className === 'box'){
       cardId = e.target.parentElement.id;
-      boardIndex = e.target.parentElement.parentElement.parentElement.parentElement.id;
+      insertBoardIndex = e.target.parentElement.parentElement.parentElement.parentElement.id;
       node= e.target.parentElement.parentElement;
     } else {
       cardId = e.target.parentElement.parentElement.id;
-      boardIndex = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id;
+      insertBoardIndex = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id;
       node= e.target.parentElement.parentElement.parentElement;
     }
 
@@ -65,13 +76,26 @@ function Board (props:any) {
     // 수정할 board 찾기
     // 추후 삭제도 여기서 index 찾으면
     let insertArr:any = [];
+    let deleteArr:any = [];
     board.forEach((data:any)=> {
-      if(data.boardIndex === Number.parseInt(boardIndex)) {
+      if(data.boardIndex === Number.parseInt(insertBoardIndex)) {
         insertArr = data;
       }
-    })
+      if(data.boardIndex === Number.parseInt(deleteBoardIndex)) {
+        deleteArr = data;
+      }
+    });
+    console.log(deleteArr);
 
-    // 수정할 card index 찾기
+    // deleteBoard 에서 card 삭제
+    let deleteIndex = e.dataTransfer.getData('deleteCardIndex');
+    deleteArr.cards.map((data:any, index:any)=> {
+      if(data.listIndex === deleteIndex){
+        deleteArr.cards.splice(index, 1)
+      }
+    });
+
+    // insertBoard 에 삽입할 card index 찾기
     let insertIndex = '';
     insertArr.cards.map((data:any, index:any)=> {
       if(data.listIndex === cardId){
@@ -79,34 +103,37 @@ function Board (props:any) {
       }
     });
 
-    // cards 에 수정할 card 삽입
+    // insertBoard 에 수정할 card 삽입
     const insertCard = {
-      boardIndex: Number.parseInt(boardIndex),
+      boardIndex: Number.parseInt(insertBoardIndex),
       listIndex: card!.getAttribute('id'),
       title: card!.getAttribute('title'),
       checked: card!.getAttribute('aria-required') === 'true'
     }
     insertArr.cards.splice(insertIndex, 0, insertCard);
-    console.log(insertArr)
 
     // localStorage save
     localStorage.setItem("board", JSON.stringify(board));
   }
 
-  const dragOver = (e:any) => {
+  dragOver = (e:any) => {
     e.preventDefault();
   }
 
-  return (
-    <div
-      id={props.id}
-      className={props.className}
-      onDrop={drop}
-      onDragOver={dragOver}
-    >
-      {props.children}
-    </div>
-  )
+  render () {
+    return (
+      <>
+        <div
+          id={this.props.id}
+          className={this.props.className}
+          onDrop={this.drop}
+          onDragOver={this.dragOver}
+        >
+          {this.props.children}
+        </div>
+      </>
+    );
+  }
 }
 
 export default Board;

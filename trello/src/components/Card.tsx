@@ -4,8 +4,12 @@ function Card(props:any) {
 
   const dragStart = (e:any) => {
     const target = e.target;
-    console.log(target)
+    // console.log(target)
 
+    const deleteBoardIndex = target.parentElement.parentElement.parentElement.id;
+
+    e.dataTransfer.setData('deleteBoardIndex', deleteBoardIndex);
+    e.dataTransfer.setData('deleteCardIndex', target.id);
     e.dataTransfer.setData('card_id', target.id);
 
     setTimeout(() => {

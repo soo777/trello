@@ -24,7 +24,14 @@ class ListItem extends React.Component<Props, State>{
   checkItem = () => {
     const {boardIndex, listIndex, title, } = this.props;
 
-    const list = JSON.parse(localStorage.getItem('list')!);
+    const board = JSON.parse(localStorage.getItem('board')!);
+
+    let list:any = [];
+    board.forEach((data:any) => {
+      if(data.boardIndex === Number.parseInt(boardIndex)){
+        list = data.cards;
+      }
+    });
 
     let changeIndex = 0;
     for(let i=0; i<list.length; i++) {
@@ -38,7 +45,7 @@ class ListItem extends React.Component<Props, State>{
 
     const arr = { boardIndex: boardIndex, listIndex: listIndex, title: title, checked: checked };
     list.splice(changeIndex, 1, arr);
-    localStorage.setItem("list", JSON.stringify(list));
+    localStorage.setItem("board", JSON.stringify(board));
 
     this.setState({
       checked:checked,
