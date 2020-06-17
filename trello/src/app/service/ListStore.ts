@@ -17,6 +17,9 @@ class ListStore {
   @observable
   card: any = [];
 
+  @observable
+  projectIndex: string = '';
+
   @action
   addBoard (title: string, projectIndex: number) {
     let index = parseInt(localStorage.getItem("boardIndex")!);
@@ -108,6 +111,15 @@ class ListStore {
     this.card = [];
   }
 
+  @action
+  setListAfterDrag(arr: any){
+    this.card = arr;
+  }
+
+  @action
+  setProjectIndex(projectIndex: string){
+    this.projectIndex = projectIndex;
+  }
 }
 
 export default ListStore;

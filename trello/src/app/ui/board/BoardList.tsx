@@ -14,6 +14,7 @@ interface Props {
 
 interface State {
   input: string;
+  cards: any;
 }
 
 @inject("listStore")
@@ -24,23 +25,11 @@ class BoardList extends React.Component<Props, State> {
     super(props);
     this.state = {
       input: "",
+      cards: [],
     };
   }
 
   componentDidMount () {
-    // const list = JSON.parse(localStorage.getItem('list')!);
-    // const boardIndex = this.props.boardIndex;
-    //
-    // if(list !== null) {
-    //   const arr: any = [];
-    //   list.forEach(function(element:any){
-    //     if(element.boardIndex === boardIndex){
-    //       arr.push(element);
-    //     }
-    //   })
-    //   this.props.listStore!.setList(arr);
-    // }
-
     // localStorage board에서 listItem 가져오기
     const board = JSON.parse(localStorage.getItem('board')!);
     const boardIndex = this.props.boardIndex;
@@ -63,6 +52,7 @@ class BoardList extends React.Component<Props, State> {
         this.props.listStore!.setList(arr);
       }
     }
+    this.setState({cards:this.props.listStore!.card});
   }
 
   enterInput = (e:any) => {
@@ -74,14 +64,17 @@ class BoardList extends React.Component<Props, State> {
       const item = e.currentTarget.value;
       this.props.listStore!.addList(item, this.props.boardIndex);
 
-      this.setState({ input: "" });
+      this.setState({
+        input: "",
+        cards: this.props.listStore!.card,
+      });
     }
   };
 
   render () {
     let { card } = this.props.listStore!;
     const { boardIndex, title, } = this.props;
-    const { input } = this.state;
+    const { input, cards } = this.state;
 
     return (
       <>
@@ -92,7 +85,7 @@ class BoardList extends React.Component<Props, State> {
             </div>
             <Input className="input" onKeyPress={this.addList} value={input} onChange={this.enterInput}/>
             {
-              card.map((data: any, index: any) => (
+              cards.map((data: any, index: any) => (
                 data.boardIndex === boardIndex
                   ?
                   <Card id={data.listIndex} className={"card"} draggable="true" key={index} checked={data.checked} title={data.title}>

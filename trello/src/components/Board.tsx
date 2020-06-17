@@ -36,7 +36,7 @@ class Board extends React.Component<Props, any> {
     /* UI정 event 수정 */
 
     // 삽입하려는 card
-    console.log(e.target);
+    // console.log(e.target);
 
     let cardId = '';
     let deleteBoardIndex = e.dataTransfer.getData('deleteBoardIndex');
@@ -85,7 +85,7 @@ class Board extends React.Component<Props, any> {
         deleteArr = data;
       }
     });
-    console.log(deleteArr);
+    // console.log(deleteArr);
 
     // deleteBoard 에서 card 삭제
     let deleteIndex = e.dataTransfer.getData('deleteCardIndex');
@@ -114,6 +114,14 @@ class Board extends React.Component<Props, any> {
 
     // localStorage save
     localStorage.setItem("board", JSON.stringify(board));
+
+    // console.log(deleteArr.cards)
+    // console.log(insertArr.cards)
+
+    let cards:any = [];
+    cards = cards.concat(deleteArr.cards).concat(insertArr.cards)
+    // console.log(arr3)
+    this.props.listStore!.setListAfterDrag(cards);
   }
 
   dragOver = (e:any) => {

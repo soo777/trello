@@ -39,6 +39,8 @@ class BoardContainer extends React.Component<Props, State> {
     const projectIndex = match.params.projectIndex;
     const boardList = JSON.parse(localStorage.getItem('board')!);
 
+    this.props.listStore!.setProjectIndex(projectIndex);
+
     if(boardList !== null) {
       const arr: any = [];
       boardList.forEach(function(element:any){
