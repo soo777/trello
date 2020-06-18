@@ -78,7 +78,8 @@ class BoardList extends React.Component<Props, State> {
 
     return (
       <>
-        <div className="board">
+        {/*<div className="board">*/}
+        <div>
           <div className="list">
             <div className="title">
               {title}

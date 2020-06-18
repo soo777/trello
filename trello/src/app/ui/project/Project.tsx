@@ -59,6 +59,12 @@ class Project extends React.Component<Props> {
     });
   }
 
+  handleInput = (e: any) => {
+    if (e.key === "Enter" && e.currentTarget.value !== ""){
+      this.createProject();
+    }
+  }
+
   render(){
 
     return(
@@ -83,7 +89,7 @@ class Project extends React.Component<Props> {
                 <Icon name='close'  />
               </span>
             </div>
-            <Input className='box' focus placeholder='Project...' onChange={this.changeProjectInput} value={this.state.projectTitle}></Input>
+            <Input className='box' focus placeholder='Project...' onChange={this.changeProjectInput} value={this.state.projectTitle} onKeyPress={this.handleInput}></Input>
             <div className='text_right box'>
               <Button content='Create' onClick={this.createProject}/>
               <Button content='Cancel' onClick={this.closeCreateProject}/>

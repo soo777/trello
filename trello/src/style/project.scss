@@ -28,8 +28,14 @@ a:-webkit-any-link {
   text-align: center;
 }
 
+.trash {
+  padding-top: 25px;
+  cursor: pointer;
+}
+
 .project{
-  width: 30%;
+  //width: 30%;
+  width: 300px;
   padding: 30px;
   .basic{
     padding: 30px;

@@ -92,7 +92,7 @@ class BoardContainer extends React.Component<Props, State> {
                   <Icon name="plus" className="plus"/>
                 </div>
                 : <div className="addWrapper">
-                  <Input className="input" onKeyPress={this.addBoard}/>
+                  <Input className="input" onKeyPress={this.addBoard} placeholder="List title.."/>
                   <span className="close" onClick={this.addOff}>
                     <Icon name="plus" className="close"/>
                   </span>
