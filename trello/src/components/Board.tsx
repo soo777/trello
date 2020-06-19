@@ -47,8 +47,10 @@ class Board extends React.Component<Props, any> {
     const card = document.getElementById(card_id);
     card!.style.display = 'block';
 
+    console.log(className)
+
     // board 밖의 영역에 drop시 return 처리
-    if(className.indexOf('box') === -1 && className.indexOf('item') === -1){
+    if(className.indexOf('box') === -1 && className.indexOf('item') === -1 && className.indexOf('input') === -1){
       return;
     }
 
@@ -59,18 +61,28 @@ class Board extends React.Component<Props, any> {
       cardId = e.target.parentElement.id;
       insertBoardIndex = e.target.parentElement.parentElement.parentElement.parentElement.id;
       node= e.target.parentElement.parentElement;
+    } else if(className.indexOf('input') !== -1 ){          // 비어있는 list
+      insertBoardIndex = e.target.parentElement.parentElement.parentElement.id;
+      node= e.target.parentElement.parentElement.parentElement;
     } else {
       cardId = e.target.parentElement.parentElement.id;
       insertBoardIndex = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id;
       node= e.target.parentElement.parentElement.parentElement;
     }
-
+    console.log(className.indexOf('input'))
+    console.log(className.indexOf('item'))
+    console.log(node)
     // insert 하기 위해 해당 노드 위치 탐색후 insert
-    node.childNodes.forEach((data:any)=>{
-      if(data.id === cardId) {
-        data.parentElement.insertBefore(card, data);
-      }
-    })
+    // 비어있는 list
+    if(className.indexOf('input') !== -1){
+      node.childNodes[0].children[0].append(card)
+    } else {
+      node.childNodes.forEach((data:any)=>{
+        if(data.id === cardId) {
+          data.parentElement.insertBefore(card, data);
+        }
+      })
+    }
 
     /* localStorage 수정 */
 
@@ -89,7 +101,7 @@ class Board extends React.Component<Props, any> {
         deleteArr = data;
       }
     });
-    // console.log(deleteArr);
+    console.log(insertArr);
 
     // deleteBoard 에서 card 삭제
     let deleteIndex = e.dataTransfer.getData('deleteCardIndex');
@@ -114,7 +126,12 @@ class Board extends React.Component<Props, any> {
       title: card!.getAttribute('title'),
       checked: card!.getAttribute('aria-required') === 'true'
     }
-    insertArr.cards.splice(insertIndex, 0, insertCard);
+
+    if(insertIndex !== ''){           // 비어있지 않은 list
+      insertArr.cards.splice(insertIndex, 0, insertCard);
+    } else {                          // 비어있는 list
+      insertArr.cards.push(insertCard);
+    }
 
     // localStorage save
     localStorage.setItem("board", JSON.stringify(board));
@@ -124,7 +141,6 @@ class Board extends React.Component<Props, any> {
 
     let cards:any = [];
     cards = cards.concat(deleteArr.cards).concat(insertArr.cards)
-    // console.log(arr3)
     this.props.listStore!.setListAfterDrag(cards);
   }
 
