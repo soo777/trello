@@ -85,20 +85,23 @@ class BoardContainer extends React.Component<Props, State> {
       <>
         <div className="flex_overflow">
 
-          <div className="board">
-            {
-              addOn
-                ? <div className="basic" onClick={this.addOn}>
-                  <Icon name="plus" className="plus"/>
-                </div>
-                : <div className="addWrapper">
-                  <Input className="input" onKeyPress={this.addBoard} placeholder="List title.."/>
-                  <span className="close" onClick={this.addOff}>
-                    <Icon name="plus" className="close"/>
-                  </span>
-                </div>
-            }
-          </div>
+          <Board id="-1" className="">
+            <div className="board">
+              {
+                addOn
+                  ? <div className="basic" onClick={this.addOn}>
+                    <Icon name="plus" className="plus"/>
+                  </div>
+                  : <div className="addWrapper">
+                    <Input className="input" onKeyPress={this.addBoard} placeholder="List title.."/>
+                    <span className="close" onClick={this.addOff}>
+                      <Icon name="plus" className="close"/>
+                    </span>
+                  </div>
+              }
+            </div>
+          </Board>
+
           {
             // boardList.map((data: any, index: any) => (
             this.state.list.map((data: any, index: any) => (

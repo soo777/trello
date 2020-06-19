@@ -14,7 +14,6 @@ class Board extends React.Component<Props, any> {
   drop = (e:any) => {
     e.preventDefault();
 
-    // console.log(e.target);
     //
     // const className = e.target.className;
     // console.log(className);
@@ -36,7 +35,7 @@ class Board extends React.Component<Props, any> {
     /* UI정 event 수정 */
 
     // 삽입하려는 card
-    // console.log(e.target);
+    console.log(e.target);
 
     let cardId = '';
     let deleteBoardIndex = e.dataTransfer.getData('deleteBoardIndex');
@@ -47,6 +46,11 @@ class Board extends React.Component<Props, any> {
     const card_id = e.dataTransfer.getData('card_id');
     const card = document.getElementById(card_id);
     card!.style.display = 'block';
+
+    // board 밖의 영역에 drop시 return 처리
+    if(className.indexOf('box') === -1 && className.indexOf('item') === -1){
+      return;
+    }
 
     let node;
 
