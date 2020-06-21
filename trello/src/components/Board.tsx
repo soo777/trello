@@ -69,20 +69,11 @@ class Board extends React.Component<Props, any> {
       insertBoardIndex = e.target.parentElement.parentElement.parentElement.parentElement.parentElement.id;
       node= e.target.parentElement.parentElement.parentElement;
     }
-    console.log(className.indexOf('input'))
-    console.log(className.indexOf('item'))
-    console.log(node)
-    // insert 하기 위해 해당 노드 위치 탐색후 insert
-    // 비어있는 list
-    if(className.indexOf('input') !== -1){
-      node.childNodes[0].children[0].append(card)
-    } else {
-      node.childNodes.forEach((data:any)=>{
-        if(data.id === cardId) {
-          data.parentElement.insertBefore(card, data);
-        }
-      })
-    }
+
+    // console.log(className.indexOf('input'))
+    // console.log(className.indexOf('item'))
+    // console.log(node)
+    // console.log(node.childNodes[0].children[0])
 
     /* localStorage 수정 */
 
@@ -101,7 +92,23 @@ class Board extends React.Component<Props, any> {
         deleteArr = data;
       }
     });
-    console.log(insertArr);
+    // console.log(insertArr);
+
+    // UI insert 하기 위해 해당 노드 위치 탐색후 insert
+    if(className.indexOf('input') !== -1){    // list 첫번째에 넣는 경우
+      if(insertArr.cards.length === 0) {      // 비어있는 list
+        node.childNodes[0].children[0].append(card)
+      } else {                                // 비어있지 않은 list 제일 첫번째에 넣는 경우
+        const firstCard = node.childNodes[0].childNodes[0].children[2];
+        node.childNodes[0].children[0].insertBefore(card, firstCard)
+      }
+    } else {                                  // 비어있지 않은 list
+      node.childNodes.forEach((data:any)=>{
+        if(data.id === cardId) {
+          data.parentElement.insertBefore(card, data);
+        }
+      })
+    }
 
     // deleteBoard 에서 card 삭제
     let deleteIndex = e.dataTransfer.getData('deleteCardIndex');
@@ -127,10 +134,14 @@ class Board extends React.Component<Props, any> {
       checked: card!.getAttribute('aria-required') === 'true'
     }
 
-    if(insertIndex !== ''){           // 비어있지 않은 list
+    if(insertIndex !== ''){                                 // 비어있지 않은 list
       insertArr.cards.splice(insertIndex, 0, insertCard);
-    } else {                          // 비어있는 list
-      insertArr.cards.push(insertCard);
+    } else {                                                // list 첫번째에 넣는 경우
+      if(insertArr.cards.length === 0) {                    // 비어있는 list
+        insertArr.cards.push(insertCard);
+      } else {                                              // 비어있지 않은 list
+        insertArr.cards.splice(0, 0, insertCard);
+      }
     }
 
     // localStorage save
