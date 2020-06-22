@@ -115,6 +115,11 @@ class BoardContainer extends React.Component<Props, State> {
             ))
           }
 
+          {
+            // 공백 board 영역
+            <Board id="-1" className="width100"/>
+          }
+
         </div>
       </>
     );
