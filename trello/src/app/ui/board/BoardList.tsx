@@ -62,11 +62,12 @@ class BoardList extends React.Component<Props, State> {
   addList = (e: any) => {
     if (e.key === "Enter" && e.currentTarget.value !== "") {
       const item = e.currentTarget.value;
-      this.props.listStore!.addList(item, this.props.boardIndex);
+      const newCard = this.props.listStore!.addList(item, this.props.boardIndex);
 
       this.setState({
         input: "",
-        cards: this.props.listStore!.card,
+        // cards: this.props.listStore!.card,
+        cards: this.state.cards.concat(newCard),
       });
     }
   };

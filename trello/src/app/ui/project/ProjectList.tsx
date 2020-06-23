@@ -3,16 +3,18 @@ import ProjectStore from "~/app/service/ProjectStore";
 import { inject, observer } from "mobx-react";
 import ProjectItem from "~/app/ui/project/ProjectItem";
 import { Button, Icon, Modal } from "semantic-ui-react";
+import ListStore from "~/app/service/ListStore";
 
 interface Props {
   projectStore?:ProjectStore;
+  listStore?:ListStore;
 }
 
 interface State {
   open:boolean;
 }
 
-@inject('projectStore')
+@inject('projectStore', 'listStore')
 @observer
 class ProjectList extends React.Component<Props, State> {
   constructor (props:any) {
@@ -27,6 +29,7 @@ class ProjectList extends React.Component<Props, State> {
 
     localStorage.clear();
     this.props.projectStore!.setProjectNull();
+    this.props.listStore!.setBoardListNull();
   }
 
   closeTrashModal = () => {

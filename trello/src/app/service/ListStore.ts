@@ -89,6 +89,8 @@ class ListStore {
     });
 
     localStorage.setItem("board", JSON.stringify(boardStorage));
+
+    return arr;
   }
 
   @action
