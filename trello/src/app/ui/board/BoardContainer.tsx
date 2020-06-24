@@ -32,9 +32,6 @@ class BoardContainer extends React.Component<Props, State> {
 
   componentDidMount () {
     let { match } = this.props;
-    // console.log(match);
-    // console.log(match.params.name);
-    // console.log(match.params.projectIndex);
 
     const projectIndex = match.params.projectIndex;
     const boardList = JSON.parse(localStorage.getItem('board')!);
@@ -103,7 +100,6 @@ class BoardContainer extends React.Component<Props, State> {
           </Board>
 
           {
-            // boardList.map((data: any, index: any) => (
             this.state.list.map((data: any, index: any) => (
               <Board id={data.boardIndex} className="board" key={index}>
               <BoardList

@@ -1,13 +1,12 @@
-import React from 'react';
+import React from "react";
 import ProjectContainer from "~/app/ui";
-
 
 class ProjectPages extends React.Component {
 
-  render(){
-    return(
-        <ProjectContainer/>
-    )
+  render () {
+    return (
+      <ProjectContainer/>
+    );
   }
 }
 

@@ -14,28 +14,10 @@ class Board extends React.Component<Props, any> {
   drop = (e:any) => {
     e.preventDefault();
 
-    //
-    // const className = e.target.className;
-    // console.log(className);
-    //
-    // const card_id = e.dataTransfer.getData('card_id');
-    //
-    // const card = document.getElementById(card_id);
-    // console.log(card)
-    // card!.style.display = 'block';
-    //
-    // console.log(e.target.parentElement)
-    //
-    // if(className === 'box'){
-    //   e.target.parentElement.parentElement.appendChild(card);
-    // } else {
-    //   e.target.parentElement.parentElement.parentElement.appendChild(card);
-    // }
-
     /* UI정 event 수정 */
 
     // 삽입하려는 card
-    console.log(e.target);
+    // console.log(e.target);
 
     let cardId = '';
     let deleteBoardIndex = e.dataTransfer.getData('deleteBoardIndex');
@@ -46,8 +28,6 @@ class Board extends React.Component<Props, any> {
     const card_id = e.dataTransfer.getData('card_id');
     const card = document.getElementById(card_id);
     card!.style.display = 'block';
-
-    console.log(className)
 
     // board 밖의 영역에 drop시 return 처리
     if(className.indexOf('box') === -1 && className.indexOf('item') === -1 && className.indexOf('input') === -1){
@@ -70,11 +50,6 @@ class Board extends React.Component<Props, any> {
       node= e.target.parentElement.parentElement.parentElement;
     }
 
-    // console.log(className.indexOf('input'))
-    // console.log(className.indexOf('item'))
-    // console.log(node)
-    // console.log(node.childNodes[0].children[0])
-
     /* localStorage 수정 */
 
     // insertArr 수정
@@ -92,7 +67,6 @@ class Board extends React.Component<Props, any> {
         deleteArr = data;
       }
     });
-    // console.log(insertArr);
 
     // UI insert 하기 위해 해당 노드 위치 탐색후 insert
     if(className.indexOf('input') !== -1){    // list 첫번째에 넣는 경우
@@ -146,9 +120,6 @@ class Board extends React.Component<Props, any> {
 
     // localStorage save
     localStorage.setItem("board", JSON.stringify(board));
-
-    // console.log(deleteArr.cards)
-    // console.log(insertArr.cards)
 
     let cards:any = [];
     cards = cards.concat(deleteArr.cards).concat(insertArr.cards)

@@ -66,14 +66,12 @@ class BoardList extends React.Component<Props, State> {
 
       this.setState({
         input: "",
-        // cards: this.props.listStore!.card,
         cards: this.state.cards.concat(newCard),
       });
     }
   };
 
   render () {
-    let { card } = this.props.listStore!;
     const { boardIndex, title, } = this.props;
     const { input, cards } = this.state;
 

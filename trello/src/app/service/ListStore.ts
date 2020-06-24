@@ -42,8 +42,6 @@ class ListStore {
     }
     boardListStorage = boardListStorage.concat(arr);
 
-    // const boardList = this.boardList;
-    // localStorage.setItem("board", JSON.stringify(boardList));
     localStorage.setItem("board", JSON.stringify(boardListStorage));
   }
 
@@ -61,16 +59,7 @@ class ListStore {
     }
 
     const arr = { boardIndex: boardIndex, listIndex: 'card_' + this.listIndex++, title: title, checked: false };
-    // this.list = this.list.concat(arr);
     this.card = this.card.concat(arr);
-
-    // let listStorage = JSON.parse(localStorage.getItem('list')!);
-    // if(listStorage === null) {
-    //   listStorage = [];
-    // }
-    // listStorage = listStorage.concat(arr);
-    //
-    // localStorage.setItem("list", JSON.stringify(listStorage));
 
     let boardStorage = JSON.parse(localStorage.getItem('board')!);
 

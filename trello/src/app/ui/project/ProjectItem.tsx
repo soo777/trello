@@ -14,11 +14,7 @@ class ProjectItem extends React.Component<Props> {
     return(
       <div className='project'>
         <Link to={"/project/" + projectTitle + "/" + projectIndex}>
-          <div
-            className='basic'
-            // style={{display:this.state.projectDisplay}}
-            // onClick={this.openCreateProject}
-          >
+          <div className='basic'>
             {projectTitle}
           </div>
         </Link>

@@ -4,7 +4,6 @@ function Card(props:any) {
 
   const dragStart = (e:any) => {
     const target = e.target;
-    // console.log(target)
 
     const deleteBoardIndex = target.parentElement.parentElement.parentElement.id;
 

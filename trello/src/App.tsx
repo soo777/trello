@@ -1,7 +1,6 @@
 import React from 'react';
 import '~/style/index.scss';
 import 'semantic-ui-css/semantic.min.css'
-import ProjectPages from "~/app/pages";
 import { Provider } from "mobx-react";
 import { AppLayout } from "~/app/ui";
 import { BrowserRouter as Router } from 'react-router-dom';
@@ -21,7 +20,6 @@ function App() {
     <Router>
       <AppLayout>
         <Routes/>
-        {/*<ProjectPages/>*/}
       </AppLayout>
     </Router>
   </Provider>
