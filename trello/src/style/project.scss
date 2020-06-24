@@ -1,4 +1,4 @@
-@mixin transform(){
+@mixin transform() {
   -webkit-transition: 200ms ease-in-out;
   transition: 200ms ease-in-out;
   -webkit-transform: scale(1.10);
@@ -10,11 +10,11 @@ a:-webkit-any-link {
   color: black;
 }
 
-.text_right{
+.text_right {
   text-align: right;
 }
 
-.flex_overflow{
+.flex_overflow {
   display: flex;
   flex-direction: row;
   //flex-wrap: wrap;
@@ -33,46 +33,52 @@ a:-webkit-any-link {
   cursor: pointer;
 }
 
-.project{
+.project {
   //width: 30%;
   width: 300px;
   padding: 30px;
-  .basic{
+
+  .basic {
     padding: 30px;
     background: #78bc6d;
     border-radius: 10px;
     font-size: 15px;
     text-align: center;
     cursor: pointer;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    &:hover{
-      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
+    &:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
       @include transform();
     }
   }
 
-  .wrapper{
+  .wrapper {
     padding: 15px;
     background: #78bc6d;
     border-radius: 10px;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-    .box{
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
+    .box {
       padding: 10px;
-      .closeIcon{
+
+      .closeIcon {
         float: right;
         cursor: pointer;
-        &:hover{
+
+        &:hover {
           @include transform();
         }
       }
     }
-    &:hover{
-      box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+
+    &:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
       @include transform();
     }
   }
 }
 
-.ui.focus.input{
+.ui.focus.input {
   width: 100%;
 }

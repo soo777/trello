@@ -1,4 +1,4 @@
-import React from 'react';
+import React from "react";
 import ProjectStore from "~/app/service/ProjectStore";
 import { inject, observer } from "mobx-react";
 import ProjectItem from "~/app/ui/project/ProjectItem";
@@ -6,18 +6,18 @@ import { Button, Icon, Modal } from "semantic-ui-react";
 import ListStore from "~/app/service/ListStore";
 
 interface Props {
-  projectStore?:ProjectStore;
-  listStore?:ListStore;
+  projectStore?: ProjectStore;
+  listStore?: ListStore;
 }
 
 interface State {
-  open:boolean;
+  open: boolean;
 }
 
-@inject('projectStore', 'listStore')
+@inject("projectStore", "listStore")
 @observer
 class ProjectList extends React.Component<Props, State> {
-  constructor (props:any) {
+  constructor (props: any) {
     super(props);
     this.state = {
       open: false,
@@ -25,36 +25,36 @@ class ProjectList extends React.Component<Props, State> {
   }
 
   resetLocalStorage = () => {
-    this.setState({open:false});
+    this.setState({ open: false });
 
     localStorage.clear();
     this.props.projectStore!.setProjectNull();
     this.props.listStore!.setBoardListNull();
-  }
+  };
 
   closeTrashModal = () => {
-    this.setState({open:false});
-  }
+    this.setState({ open: false });
+  };
 
   openModal = () => {
-    this.setState({open:true})
-  }
+    this.setState({ open: true });
+  };
 
-  render(){
-    const {open} = this.state;
+  render () {
+    const { open } = this.state;
 
     let { projectList } = this.props.projectStore!;
 
-    if(!projectList){
+    if (!projectList) {
       projectList = [];
       this.props.projectStore!.setProjectNull();
     }
 
-    return(
+    return (
       <>
         {
-          projectList.map((data:any,index:any) => (
-            <ProjectItem projectTitle={data.title} projectIndex={data.projectIndex} key={index} />
+          projectList.map((data: any, index: any) => (
+            <ProjectItem projectTitle={data.title} projectIndex={data.projectIndex} key={index}/>
           ))
         }
         {
@@ -68,7 +68,7 @@ class ProjectList extends React.Component<Props, State> {
               />
             </div>
             :
-            ''
+            ""
         }
 
         <Modal size="mini" open={open} onClose={this.closeTrashModal}>
@@ -88,7 +88,7 @@ class ProjectList extends React.Component<Props, State> {
           </Modal.Actions>
         </Modal>
       </>
-    )
+    );
   }
 }
 

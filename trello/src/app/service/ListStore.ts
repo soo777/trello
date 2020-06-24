@@ -18,7 +18,7 @@ class ListStore {
   card: any = [];
 
   @observable
-  projectIndex: string = '';
+  projectIndex: string = "";
 
   @action
   addBoard (title: string, projectIndex: number) {
@@ -29,15 +29,15 @@ class ListStore {
       this.boardIndex = index;
     } else {
       index = 0;
-      localStorage.setItem('boardIndex', index.toString());
+      localStorage.setItem("boardIndex", index.toString());
       this.boardIndex = index;
     }
 
     const arr = { projectIndex: projectIndex, boardIndex: this.boardIndex, title: title, cards: [] };
     this.boardList = this.boardList.concat(arr);
 
-    let boardListStorage = JSON.parse(localStorage.getItem('board')!);
-    if(boardListStorage === null) {
+    let boardListStorage = JSON.parse(localStorage.getItem("board")!);
+    if (boardListStorage === null) {
       boardListStorage = [];
     }
     boardListStorage = boardListStorage.concat(arr);
@@ -54,24 +54,29 @@ class ListStore {
       this.listIndex = listIndex;
     } else {
       listIndex = 0;
-      localStorage.setItem('listIndex', listIndex.toString());
+      localStorage.setItem("listIndex", listIndex.toString());
       this.listIndex = listIndex;
     }
 
-    const arr = { boardIndex: boardIndex, listIndex: 'card_' + this.listIndex++, title: title, checked: false };
+    const arr = { boardIndex: boardIndex, listIndex: "card_" + this.listIndex++, title: title, checked: false };
     this.card = this.card.concat(arr);
 
-    let boardStorage = JSON.parse(localStorage.getItem('board')!);
+    let boardStorage = JSON.parse(localStorage.getItem("board")!);
 
     let arr1;
-    boardStorage.map((data:any, index:any) => {
-      if(data.boardIndex === boardIndex){
-        if(data.cards.length > 0){
-          arr1 = {projectIndex: data.projectIndex, boardIndex: data.boardIndex, title: data.title, cards: data.cards.concat(arr)};
+    boardStorage.map((data: any, index: any) => {
+      if (data.boardIndex === boardIndex) {
+        if (data.cards.length > 0) {
+          arr1 = {
+            projectIndex: data.projectIndex,
+            boardIndex: data.boardIndex,
+            title: data.title,
+            cards: data.cards.concat(arr),
+          };
         } else {
-        let cardArr:any = [];
+          let cardArr: any = [];
           cardArr.push(arr);
-          arr1 = {projectIndex: data.projectIndex, boardIndex: data.boardIndex, title: data.title, cards: cardArr};
+          arr1 = { projectIndex: data.projectIndex, boardIndex: data.boardIndex, title: data.title, cards: cardArr };
         }
         boardStorage.splice(index, 1, arr1);
       }
@@ -88,27 +93,27 @@ class ListStore {
   }
 
   @action
-  setBoardList(boardList:any) {
+  setBoardList (boardList: any) {
     this.boardList = boardList;
   }
 
   @action
-  setList(arr:any){
+  setList (arr: any) {
     this.card = this.card.concat(arr);
   }
 
   @action
-  setListNull(){
+  setListNull () {
     this.card = [];
   }
 
   @action
-  setListAfterDrag(arr: any){
+  setListAfterDrag (arr: any) {
     this.card = arr;
   }
 
   @action
-  setProjectIndex(projectIndex: string){
+  setProjectIndex (projectIndex: string) {
     this.projectIndex = projectIndex;
   }
 }

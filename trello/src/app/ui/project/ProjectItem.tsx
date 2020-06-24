@@ -1,17 +1,17 @@
-import React from 'react'
+import React from "react";
 import { Link } from "react-router-dom";
 
 interface Props {
-  projectTitle:string;
-  projectIndex:number;
+  projectTitle: string;
+  projectIndex: number;
 }
 
 class ProjectItem extends React.Component<Props> {
 
   render () {
-    const {projectTitle, projectIndex} = this.props;
+    const { projectTitle, projectIndex } = this.props;
 
-    return(
+    return (
       <div className='project'>
         <Link to={"/project/" + projectTitle + "/" + projectIndex}>
           <div className='basic'>
@@ -19,7 +19,7 @@ class ProjectItem extends React.Component<Props> {
           </div>
         </Link>
       </div>
-    )
+    );
   }
 }
 

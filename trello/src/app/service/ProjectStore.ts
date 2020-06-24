@@ -22,7 +22,7 @@ class ProjectStore {
       localStorage.setItem("projectIndex", index.toString());
       this.projectIndex = index;
     } else {
-      localStorage.setItem('projectIndex', '0');
+      localStorage.setItem("projectIndex", "0");
       index = 0;
       this.projectIndex = index;
     }

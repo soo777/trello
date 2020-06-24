@@ -34,30 +34,30 @@ class BoardContainer extends React.Component<Props, State> {
     let { match } = this.props;
 
     const projectIndex = match.params.projectIndex;
-    const boardList = JSON.parse(localStorage.getItem('board')!);
+    const boardList = JSON.parse(localStorage.getItem("board")!);
 
     this.props.listStore!.setProjectIndex(projectIndex);
 
-    if(boardList !== null) {
+    if (boardList !== null) {
       const arr: any = [];
-      boardList.forEach(function(element:any){
-        if(element.projectIndex === projectIndex){
+      boardList.forEach(function (element: any) {
+        if (element.projectIndex === projectIndex) {
           arr.push(element);
         }
-      })
-      this.setState({list:arr})
+      });
+      this.setState({ list: arr });
       this.props.listStore!.setBoardList(arr);
     }
   }
 
   addBoard = (e: any) => {
-    if (e.key === "Enter" && e.currentTarget.value !== '') {
+    if (e.key === "Enter" && e.currentTarget.value !== "") {
       const boardTitle = e.currentTarget.value;
-      const projectIndex = this.props.match.params.projectIndex
+      const projectIndex = this.props.match.params.projectIndex;
       this.props.listStore!.addBoard(boardTitle, projectIndex);
       this.setState({ addOn: true });
     }
-    this.setState({list:this.props.listStore!.boardList})
+    this.setState({ list: this.props.listStore!.boardList });
   };
 
   addOn = () => {
@@ -71,7 +71,7 @@ class BoardContainer extends React.Component<Props, State> {
   render () {
     const { addOn } = this.state;
 
-    let { boardList, } = this.props.listStore!;
+    let { boardList } = this.props.listStore!;
 
     if (!boardList) {
       boardList = [];
@@ -102,11 +102,11 @@ class BoardContainer extends React.Component<Props, State> {
           {
             this.state.list.map((data: any, index: any) => (
               <Board id={data.boardIndex} className="board" key={index}>
-              <BoardList
-                title={data.title}
-                boardIndex={data.boardIndex}
-                key={index}
-              />
+                <BoardList
+                  title={data.title}
+                  boardIndex={data.boardIndex}
+                  key={index}
+                />
               </Board>
             ))
           }

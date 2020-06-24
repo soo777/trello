@@ -1,24 +1,24 @@
-import React from 'react';
+import React from "react";
 
-function Card(props:any) {
+function Card (props: any) {
 
-  const dragStart = (e:any) => {
+  const dragStart = (e: any) => {
     const target = e.target;
 
     const deleteBoardIndex = target.parentElement.parentElement.parentElement.id;
 
-    e.dataTransfer.setData('deleteBoardIndex', deleteBoardIndex);
-    e.dataTransfer.setData('deleteCardIndex', target.id);
-    e.dataTransfer.setData('card_id', target.id);
+    e.dataTransfer.setData("deleteBoardIndex", deleteBoardIndex);
+    e.dataTransfer.setData("deleteCardIndex", target.id);
+    e.dataTransfer.setData("card_id", target.id);
 
     setTimeout(() => {
-      target.style.display = 'none';
-    }, 0)
-  }
+      target.style.display = "none";
+    }, 0);
+  };
 
-  const dragOver = (e:any) => {
+  const dragOver = (e: any) => {
     // e.stopPropagation();
-  }
+  };
 
   return (
     <div
@@ -32,7 +32,7 @@ function Card(props:any) {
     >
       {props.children}
     </div>
-  )
+  );
 }
 
 export default Card;

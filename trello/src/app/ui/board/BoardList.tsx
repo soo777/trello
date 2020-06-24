@@ -31,33 +31,33 @@ class BoardList extends React.Component<Props, State> {
 
   componentDidMount () {
     // localStorage board에서 listItem 가져오기
-    const board = JSON.parse(localStorage.getItem('board')!);
+    const board = JSON.parse(localStorage.getItem("board")!);
     const boardIndex = this.props.boardIndex;
 
-    if(board !== null) {
-      let list:any = [];
-      board.forEach((data:any)=> {
-        if(data.boardIndex === boardIndex) {
+    if (board !== null) {
+      let list: any = [];
+      board.forEach((data: any) => {
+        if (data.boardIndex === boardIndex) {
           list = data.cards;
         }
-      })
+      });
 
-      if(list !== null) {
+      if (list !== null) {
         const arr: any = [];
-        list.forEach(function(element:any){
-          if(element.boardIndex === boardIndex){
+        list.forEach(function (element: any) {
+          if (element.boardIndex === boardIndex) {
             arr.push(element);
           }
-        })
+        });
         this.props.listStore!.setList(arr);
       }
     }
-    this.setState({cards:this.props.listStore!.card});
+    this.setState({ cards: this.props.listStore!.card });
   }
 
-  enterInput = (e:any) => {
-    this.setState({input:e.currentTarget.value});
-  }
+  enterInput = (e: any) => {
+    this.setState({ input: e.currentTarget.value });
+  };
 
   addList = (e: any) => {
     if (e.key === "Enter" && e.currentTarget.value !== "") {
@@ -72,7 +72,7 @@ class BoardList extends React.Component<Props, State> {
   };
 
   render () {
-    const { boardIndex, title, } = this.props;
+    const { boardIndex, title } = this.props;
     const { input, cards } = this.state;
 
     return (
@@ -87,14 +87,15 @@ class BoardList extends React.Component<Props, State> {
               cards.map((data: any, index: any) => (
                 data.boardIndex === boardIndex
                   ?
-                  <Card id={data.listIndex} className={"card"} draggable="true" key={index} checked={data.checked} title={data.title}>
-                  <ListItem
-                    boardIndex={data.boardIndex}
-                    listIndex={data.listIndex}
-                    title={data.title}
-                    checked={data.checked}
-                    key={index}
-                  />
+                  <Card id={data.listIndex} className={"card"} draggable="true" key={index} checked={data.checked}
+                        title={data.title}>
+                    <ListItem
+                      boardIndex={data.boardIndex}
+                      listIndex={data.listIndex}
+                      title={data.title}
+                      checked={data.checked}
+                      key={index}
+                    />
                   </Card>
                   : ""
               ))

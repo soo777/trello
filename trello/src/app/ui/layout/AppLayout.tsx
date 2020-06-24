@@ -1,20 +1,20 @@
-import React from 'react';
+import React from "react";
 import { Link } from "react-router-dom";
 
-class AppLayout extends React.Component{
+class AppLayout extends React.Component {
 
   render () {
-    return(
+    return (
       <>
         <div className='title'>
           <Link to={"/"}>
-          <img src='/images/light_64.png' alt=''/>
+            <img src='/images/light_64.png' alt=''/>
           </Link>
         </div>
-        { this.props.children }
+        {this.props.children}
       </>
 
-    )
+    );
   }
 
 }
