@@ -1,13 +1,13 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
-import BoardContainer from "~/app/ui/board/BoardContainer";
-import ProjectPages from "~/app/pages/ProjectPages";
+import ListContainer from "~/app/ui/list/ListContainer";
+import BoardContainer from "~/app/ui";
 
 const Routes = () => (
   <>
     <Switch>
-      <Route exact path="/" component={ProjectPages}/>
-      <Route path="/project/:name/:projectIndex" component={BoardContainer}/>
+      <Route exact path="/" component={BoardContainer}/>
+      <Route path="/board/:name/:boardIndex" component={ListContainer}/>
     </Switch>
 
   </>

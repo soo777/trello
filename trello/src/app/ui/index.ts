@@ -1,2 +1,2 @@
-export { default } from "./project";
+export { default } from "./board";
 export * from "./layout";

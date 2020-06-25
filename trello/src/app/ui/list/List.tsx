@@ -1,15 +1,15 @@
 import React from "react";
 import { Input } from "semantic-ui-react";
-import ListItem from "~/app/ui/board/ListItem";
+import Card from "~/app/ui/list/Card";
 import ListStore from "~/app/service/ListStore";
 import { inject, observer } from "mobx-react";
 import autobind from "~/app/service/autobindDecorator";
-import Card from "~/components/Card";
+import CardComponent from "~/components/CardComponent";
 
 interface Props {
   listStore?: ListStore;
   title: string;
-  boardIndex: number;
+  listIndex: number;
 }
 
 interface State {
@@ -20,7 +20,7 @@ interface State {
 @inject("listStore")
 @observer
 @autobind
-class BoardList extends React.Component<Props, State> {
+class List extends React.Component<Props, State> {
   constructor (props: any) {
     super(props);
     this.state = {
@@ -31,25 +31,24 @@ class BoardList extends React.Component<Props, State> {
 
   componentDidMount () {
     // localStorage board에서 listItem 가져오기
-    const board = JSON.parse(localStorage.getItem("board")!);
-    const boardIndex = this.props.boardIndex;
+    const listStorage = JSON.parse(localStorage.getItem("list")!);
+    const listIndex = this.props.listIndex;
 
-    if (board !== null) {
-      let list: any = [];
-      board.forEach((data: any) => {
-        if (data.boardIndex === boardIndex) {
-          list = data.cards;
+    if (listStorage !== null) {
+      let cards: any = [];
+      listStorage.forEach((data: any) => {
+        if (data.listIndex === listIndex) {
+          cards = data.cards;
         }
       });
-
-      if (list !== null) {
+      if (cards !== null) {
         const arr: any = [];
-        list.forEach(function (element: any) {
-          if (element.boardIndex === boardIndex) {
+        cards.forEach(function (element: any) {
+          if (element.listIndex === listIndex) {
             arr.push(element);
           }
         });
-        this.props.listStore!.setList(arr);
+        this.props.listStore!.setCard(arr);
       }
     }
     this.setState({ cards: this.props.listStore!.card });
@@ -59,10 +58,10 @@ class BoardList extends React.Component<Props, State> {
     this.setState({ input: e.currentTarget.value });
   };
 
-  addList = (e: any) => {
+  addCard = (e: any) => {
     if (e.key === "Enter" && e.currentTarget.value !== "") {
       const item = e.currentTarget.value;
-      const newCard = this.props.listStore!.addList(item, this.props.boardIndex);
+      const newCard = this.props.listStore!.addCard(item, this.props.listIndex);
 
       this.setState({
         input: "",
@@ -72,7 +71,7 @@ class BoardList extends React.Component<Props, State> {
   };
 
   render () {
-    const { boardIndex, title } = this.props;
+    const { listIndex, title } = this.props;
     const { input, cards } = this.state;
 
     return (
@@ -82,21 +81,20 @@ class BoardList extends React.Component<Props, State> {
             <div className="title">
               {title}
             </div>
-            <Input className="input" onKeyPress={this.addList} value={input} onChange={this.enterInput}/>
+            <Input className="input" onKeyPress={this.addCard} value={input} onChange={this.enterInput}/>
             {
               cards.map((data: any, index: any) => (
-                data.boardIndex === boardIndex
+                data.listIndex === listIndex
                   ?
-                  <Card id={data.listIndex} className={"card"} draggable="true" key={index} checked={data.checked}
-                        title={data.title}>
-                    <ListItem
-                      boardIndex={data.boardIndex}
-                      listIndex={data.listIndex}
+                  <CardComponent id={data.cardIndex} className={"card"} draggable="true" key={index} checked={data.checked}
+                                 title={data.title}>
+                    <Card
+                      cardIndex={data.cardIndex}
                       title={data.title}
                       checked={data.checked}
                       key={index}
                     />
-                  </Card>
+                  </CardComponent>
                   : ""
               ))
             }
@@ -107,4 +105,4 @@ class BoardList extends React.Component<Props, State> {
   }
 }
 
-export default BoardList;
+export default List;

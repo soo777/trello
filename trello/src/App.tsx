@@ -6,15 +6,15 @@ import { AppLayout } from "~/app/ui";
 import { BrowserRouter as Router } from "react-router-dom";
 import Routes from "~/app/pages/Routes";
 import ListStore from "~/app/service/ListStore";
-import ProjectStore from "~/app/service/ProjectStore";
+import BoardStore from "~/app/service/BoardStore";
 
-const projectStore = new ProjectStore();
+const boardStore = new BoardStore();
 const listStore = new ListStore();
 
 function App () {
   return (
     <Provider
-      projectStore={projectStore}
+      boardStore={boardStore}
       listStore={listStore}
     >
       <Router>

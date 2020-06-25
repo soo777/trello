@@ -1,6 +1,6 @@
 import React from "react";
 
-function Card (props: any) {
+function CardComponent (props: any) {
 
   const dragStart = (e: any) => {
     const target = e.target;
@@ -35,4 +35,4 @@ function Card (props: any) {
   );
 }
 
-export default Card;
+export default CardComponent;

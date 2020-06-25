@@ -6,8 +6,7 @@ import autobind from "~/app/service/autobindDecorator";
 
 interface Props {
   listStore?: ListStore;
-  boardIndex: string,
-  listIndex: string,
+  cardIndex: string,
   title: string,
   checked: boolean,
 }
@@ -19,7 +18,7 @@ interface State {
 @inject("listStore")
 @observer
 @autobind
-class ListItem extends React.Component<Props, State> {
+class Card extends React.Component<Props, State> {
   constructor (props: any) {
     super(props);
     this.state = {
@@ -28,36 +27,36 @@ class ListItem extends React.Component<Props, State> {
   }
 
   checkItem = () => {
-    const { boardIndex, listIndex, title } = this.props;
+    const { cardIndex, title } = this.props;
 
-    const board = JSON.parse(localStorage.getItem("board")!);
+    const listStorage = JSON.parse(localStorage.getItem("list")!);
 
     let list: any = [];
 
-    const projectIndex = this.props.listStore!.projectIndex;
-    board.forEach((data: any) => {
-      if (data.projectIndex === projectIndex) {
+    const boardIndex = this.props.listStore!.currentBoardIndex;
+    listStorage.forEach((data: any) => {
+      if (data.boardIndex === boardIndex) {
         list = list.concat(data.cards);
       }
     });
 
-    let newBoardIndex: any;
+    let newListIndex: any;
     list.forEach((data: any) => {
-      if (data.listIndex === listIndex) {
-        newBoardIndex = data.boardIndex;
+      if (data.cardIndex === cardIndex) {
+        newListIndex = data.listIndex;
       }
     });
 
     list = [];
-    board.forEach((data: any) => {
-      if (data.boardIndex === Number.parseInt(newBoardIndex)) {
+    listStorage.forEach((data: any) => {
+      if (data.listIndex === Number.parseInt(newListIndex)) {
         list = data.cards;
       }
     });
 
     let changeIndex = 0;
     for (let i = 0; i < list.length; i++) {
-      if (list[i].listIndex === listIndex) {
+      if (list[i].cardIndex === cardIndex) {
         changeIndex = i;
       }
     }
@@ -65,16 +64,16 @@ class ListItem extends React.Component<Props, State> {
     let checked;
     list[changeIndex].checked ? checked = false : checked = true;
 
-    const arr = { boardIndex: list[changeIndex].boardIndex, listIndex: listIndex, title: title, checked: checked };
+    const arr = { listIndex: list[changeIndex].listIndex, cardIndex: cardIndex, title: title, checked: checked };
     list.splice(changeIndex, 1, arr);
 
     this.setState({
       checked: checked,
     });
 
-    this.props.listStore!.setListAfterDrag(list);
+    this.props.listStore!.setCardAfterDrag(list);
 
-    localStorage.setItem("board", JSON.stringify(board));
+    localStorage.setItem("list", JSON.stringify(listStorage));
   };
 
   render () {
@@ -95,4 +94,4 @@ class ListItem extends React.Component<Props, State> {
   }
 }
 
-export default ListItem;
+export default Card;

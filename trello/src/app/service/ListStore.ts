@@ -3,118 +3,118 @@ import { action, observable } from "mobx";
 class ListStore {
 
   @observable
-  boardList: { projectIndex: number, boardIndex: number, title: string }[] = [];
-
-  @observable
-  boardIndex: number = 0;
-
-  @observable
-  list: { boardIndex: number, listIndex: number, title: string, checked: boolean }[] = [];
+  list: { boardIndex: number, listIndex: number, title: string }[] = [];
 
   @observable
   listIndex: number = 0;
 
   @observable
+  cards: { listIndex: number, cardIndex: number, title: string, checked: boolean }[] = [];
+
+  @observable
+  cardIndex: number = 0;
+
+  @observable
   card: any = [];
 
   @observable
-  projectIndex: string = "";
-
-  @action
-  addBoard (title: string, projectIndex: number) {
-    let index = parseInt(localStorage.getItem("boardIndex")!);
-    if (index >= 0) {
-      index += 1;
-      localStorage.setItem("boardIndex", index.toString());
-      this.boardIndex = index;
-    } else {
-      index = 0;
-      localStorage.setItem("boardIndex", index.toString());
-      this.boardIndex = index;
-    }
-
-    const arr = { projectIndex: projectIndex, boardIndex: this.boardIndex, title: title, cards: [] };
-    this.boardList = this.boardList.concat(arr);
-
-    let boardListStorage = JSON.parse(localStorage.getItem("board")!);
-    if (boardListStorage === null) {
-      boardListStorage = [];
-    }
-    boardListStorage = boardListStorage.concat(arr);
-
-    localStorage.setItem("board", JSON.stringify(boardListStorage));
-  }
+  currentBoardIndex: string = "";
 
   @action
   addList (title: string, boardIndex: number) {
-    let listIndex = parseInt(localStorage.getItem("listIndex")!);
-    if (listIndex >= 0) {
-      listIndex += 1;
-      localStorage.setItem("listIndex", listIndex.toString());
-      this.listIndex = listIndex;
+    let index = parseInt(localStorage.getItem("listIndex")!);
+    if (index >= 0) {
+      index += 1;
+      localStorage.setItem("listIndex", index.toString());
+      this.listIndex = index;
     } else {
-      listIndex = 0;
-      localStorage.setItem("listIndex", listIndex.toString());
-      this.listIndex = listIndex;
+      index = 0;
+      localStorage.setItem("listIndex", index.toString());
+      this.listIndex = index;
     }
 
-    const arr = { boardIndex: boardIndex, listIndex: "card_" + this.listIndex++, title: title, checked: false };
+    const arr = { boardIndex: boardIndex, listIndex: this.listIndex, title: title, cards: [] };
+    this.list = this.list.concat(arr);
+
+    let listStorage = JSON.parse(localStorage.getItem("list")!);
+    if (listStorage === null) {
+      listStorage = [];
+    }
+    listStorage = listStorage.concat(arr);
+
+    localStorage.setItem("list", JSON.stringify(listStorage));
+  }
+
+  @action
+  addCard (title: string, listIndex: number) {
+    let cardIndexStorage = parseInt(localStorage.getItem("cardIndex")!);
+    if (cardIndexStorage >= 0) {
+      cardIndexStorage += 1;
+      localStorage.setItem("cardIndex", cardIndexStorage.toString());
+      this.cardIndex = cardIndexStorage;
+    } else {
+      cardIndexStorage = 0;
+      localStorage.setItem("cardIndex", cardIndexStorage.toString());
+      this.cardIndex = cardIndexStorage;
+    }
+
+    const arr = { listIndex: listIndex, cardIndex: "card_" + this.cardIndex++, title: title, checked: false };
     this.card = this.card.concat(arr);
 
-    let boardStorage = JSON.parse(localStorage.getItem("board")!);
+    let listStorage = JSON.parse(localStorage.getItem("list")!);
 
     let arr1;
-    boardStorage.map((data: any, index: any) => {
-      if (data.boardIndex === boardIndex) {
+    listStorage.map((data: any, index: any) => {
+      if (data.listIndex === listIndex) {
         if (data.cards.length > 0) {
           arr1 = {
-            projectIndex: data.projectIndex,
             boardIndex: data.boardIndex,
+            listIndex: data.listIndex,
             title: data.title,
             cards: data.cards.concat(arr),
           };
         } else {
           let cardArr: any = [];
           cardArr.push(arr);
-          arr1 = { projectIndex: data.projectIndex, boardIndex: data.boardIndex, title: data.title, cards: cardArr };
+          arr1 = { boardIndex: data.boardIndex, listIndex: data.listIndex, title: data.title, cards: cardArr };
         }
-        boardStorage.splice(index, 1, arr1);
+        listStorage.splice(index, 1, arr1);
       }
     });
 
-    localStorage.setItem("board", JSON.stringify(boardStorage));
+    localStorage.setItem("list", JSON.stringify(listStorage));
 
     return arr;
   }
 
   @action
-  setBoardListNull () {
-    this.boardList = [];
+  setListNull () {
+    this.list = [];
   }
 
   @action
-  setBoardList (boardList: any) {
-    this.boardList = boardList;
+  setList (list: any) {
+    this.list = list;
   }
 
   @action
-  setList (arr: any) {
+  setCard (arr: any) {
     this.card = this.card.concat(arr);
   }
 
   @action
-  setListNull () {
+  setCardNull () {
     this.card = [];
   }
 
   @action
-  setListAfterDrag (arr: any) {
+  setCardAfterDrag (arr: any) {
     this.card = arr;
   }
 
   @action
-  setProjectIndex (projectIndex: string) {
-    this.projectIndex = projectIndex;
+  setCurrentBoardIndex (currentBoardIndex: string) {
+    this.currentBoardIndex = currentBoardIndex;
   }
 }
 

@@ -10,7 +10,7 @@ interface Props {
 
 @inject("listStore")
 @observer
-class Board extends React.Component<Props, any> {
+class ListComponent extends React.Component<Props, any> {
   drop = (e: any) => {
     e.preventDefault();
 
@@ -53,17 +53,17 @@ class Board extends React.Component<Props, any> {
     /* localStorage 수정 */
 
     // insertArr 수정
-    const board = JSON.parse(localStorage.getItem("board")!);
+    const board = JSON.parse(localStorage.getItem("list")!);
 
     // 수정할 board 찾기
     // 추후 삭제도 여기서 index 찾으면
     let insertArr: any = [];
     let deleteArr: any = [];
     board.forEach((data: any) => {
-      if (data.boardIndex === Number.parseInt(insertBoardIndex)) {
+      if (data.listIndex === Number.parseInt(insertBoardIndex)) {
         insertArr = data;
       }
-      if (data.boardIndex === Number.parseInt(deleteBoardIndex)) {
+      if (data.listIndex === Number.parseInt(deleteBoardIndex)) {
         deleteArr = data;
       }
     });
@@ -87,7 +87,7 @@ class Board extends React.Component<Props, any> {
     // deleteBoard 에서 card 삭제
     let deleteIndex = e.dataTransfer.getData("deleteCardIndex");
     deleteArr.cards.map((data: any, index: any) => {
-      if (data.listIndex === deleteIndex) {
+      if (data.cardIndex === deleteIndex) {
         deleteArr.cards.splice(index, 1);
       }
     });
@@ -95,15 +95,15 @@ class Board extends React.Component<Props, any> {
     // insertBoard 에 삽입할 card index 찾기
     let insertIndex = "";
     insertArr.cards.map((data: any, index: any) => {
-      if (data.listIndex === cardId) {
+      if (data.cardIndex === cardId) {
         insertIndex = index;
       }
     });
 
     // insertBoard 에 수정할 card 삽입
     const insertCard = {
-      boardIndex: Number.parseInt(insertBoardIndex),
-      listIndex: card!.getAttribute("id"),
+      listIndex: Number.parseInt(insertBoardIndex),
+      cardIndex: card!.getAttribute("id"),
       title: card!.getAttribute("title"),
       checked: card!.getAttribute("aria-required") === "true",
     };
@@ -119,11 +119,11 @@ class Board extends React.Component<Props, any> {
     }
 
     // localStorage save
-    localStorage.setItem("board", JSON.stringify(board));
+    localStorage.setItem("list", JSON.stringify(board));
 
     let cards: any = [];
     cards = cards.concat(deleteArr.cards).concat(insertArr.cards);
-    this.props.listStore!.setListAfterDrag(cards);
+    this.props.listStore!.setCardAfterDrag(cards);
   };
 
   dragOver = (e: any) => {
@@ -146,4 +146,4 @@ class Board extends React.Component<Props, any> {
   }
 }
 
-export default Board;
+export default ListComponent;
