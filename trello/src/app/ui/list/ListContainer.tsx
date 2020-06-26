@@ -81,7 +81,7 @@ class ListContainer extends React.Component<Props, State> {
         <div className="flex_overflow">
 
           <ListComponent id="-1" className="">
-            <div className="board">
+            <div className="listContainer">
               {
                 addOn
                   ? <div className="basic" onClick={this.addOn}>
@@ -99,7 +99,7 @@ class ListContainer extends React.Component<Props, State> {
 
           {
             this.state.list.map((data: any, index: any) => (
-              <ListComponent id={data.listIndex} className="board" key={index}>
+              <ListComponent id={data.listIndex} className="listContainer" key={index}>
                 <List
                   title={data.title}
                   listIndex={data.listIndex}

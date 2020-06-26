@@ -107,7 +107,7 @@ class Board extends React.Component<Props, State> {
 
     return (
       <>
-        <div className='project'>
+        <div className='board'>
           <div
             className='basic'
             style={{ display: this.state.addBoardDisplay }}
@@ -146,7 +146,7 @@ class Board extends React.Component<Props, State> {
         {
           boardList.length !== 0
             ?
-            <div className="project">
+            <div className="board">
               <Icon
                 className="trash alternate outline"
                 size="big"

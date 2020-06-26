@@ -12,7 +12,7 @@ class BoardItem extends React.Component<Props> {
     const { boardTitle, boardIndex } = this.props;
 
     return (
-      <div className='project'>
+      <div className='board'>
         <Link to={"/board/" + boardTitle + "/" + boardIndex}>
           <div className='basic'>
             {boardTitle}

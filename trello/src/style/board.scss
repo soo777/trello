@@ -1,19 +1,74 @@
+@mixin transform() {
+  -webkit-transition: 200ms ease-in-out;
+  transition: 200ms ease-in-out;
+  -webkit-transform: scale(1.10);
+  -ms-transform: scale(1.10);
+  transform: scale(1.10);
+}
+
+a:-webkit-any-link {
+  color: black;
+}
+
+.text_right {
+  text-align: right;
+}
+
+.flex_overflow {
+  display: flex;
+  flex-direction: row;
+  //flex-wrap: wrap;
+  overflow: auto;
+  height: 85vh;
+}
+
+.title {
+  padding: 40px;
+  font-size: 40px;
+  text-align: center;
+}
+
+.trash {
+  padding-top: 25px;
+  cursor: pointer;
+}
+
 .board {
-  //width: 25%;
+  //width: 30%;
   width: 300px;
   padding: 30px;
 
   .basic {
     padding: 30px;
-    background: #efefd7;
+    background: #78bc6d;
     border-radius: 10px;
+    font-size: 15px;
     text-align: center;
-    font-size: 20px;
+    cursor: pointer;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
 
-    .plus {
-      &:hover {
+    &:hover {
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+      @include transform();
+    }
+  }
+
+  .wrapper {
+    padding: 15px;
+    background: #78bc6d;
+    border-radius: 10px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+
+    .box {
+      padding: 10px;
+
+      .closeIcon {
+        float: right;
         cursor: pointer;
+
+        &:hover {
+          @include transform();
+        }
       }
     }
 
@@ -22,80 +77,8 @@
       @include transform();
     }
   }
-
-  .addWrapper {
-    padding: 20px 10px 20px 20px;
-    background: #efefd7;
-    border-radius: 10px;
-
-    .input {
-      width: 84%;
-    }
-
-    .close {
-      text-align-last: right;
-      cursor: pointer;
-      font-size: 20px;
-    }
-  }
-
-  .wrapper {
-    padding: 20px;
-    background: #efefd7;
-    border-radius: 10px;
-
-    .input {
-      width: 100%;
-    }
-  }
-
-  .list {
-    //padding: 20px;
-    //background: #efefd7;
-    border: 2.5px solid rgba(255, 255, 255, 0.8);
-    box-shadow: 0 0px 3px rgba(0, 0, 0, 0.16), 0 0px 3px rgba(0, 0, 0, 0.23);
-    //border-radius: 10px;
-    .title {
-      padding: 20px 20px 0px 20px;
-      text-align: center;
-      font-size: 18px;
-    }
-
-    .input {
-      padding: 10px 20px 10px 20px;
-      border-radius: 10px;
-      width: 100%;
-    }
-
-    .box {
-      padding: 10px 20px 10px 20px;
-
-      .item {
-        padding: 14px 7px 14px 7px;
-        //margin: 10px 0px 10px 0px;
-        border: 2.5px solid rgba(255, 255, 255, 0.8);
-        box-shadow: 0 3px 3px rgba(0, 0, 0, 0.16), 0 3px 3px rgba(0, 0, 0, 0.23);
-      }
-
-      .checked {
-        text-decoration: line-through;
-        background: azure;
-      }
-
-      .unchecked {
-        //text-decoration: line-through;
-        //background: azure;
-      }
-
-      .checkIcon {
-        float: right;
-        cursor: pointer;
-      }
-    }
-  }
-
 }
 
-.width100 {
+.ui.focus.input {
   width: 100%;
 }
